@@ -104,19 +104,16 @@ public class OrderDetail
         this.order = order;
     }
 
-    public Product getProduct()
-    {
+    public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product)
-    {
+    public void setProduct(Product product) {
         this.product = product;
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "OrderDetail{" +
                 "odetailId=" + odetailId +
                 ", orderId=" + orderId +

@@ -5,18 +5,8 @@ public class Pic
     private int picId;
     private String picUrl;
     private int productId;
+    private Product product;
 
-    public Pic()
-    {
-        super();
-    }
-
-    public Pic(int picId, String picUrl, int productId)
-    {
-        this.picId = picId;
-        this.picUrl = picUrl;
-        this.productId = productId;
-    }
 
     public int getPicId()
     {
@@ -48,13 +38,21 @@ public class Pic
         this.productId = productId;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Pic{" +
                 "picId=" + picId +
                 ", picUrl='" + picUrl + '\'' +
                 ", productId=" + productId +
+                ", product=" + product +
                 '}';
     }
 }

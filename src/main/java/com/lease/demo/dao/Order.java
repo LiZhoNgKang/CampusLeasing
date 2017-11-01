@@ -86,13 +86,11 @@ public class Order
         this.orderDetails = orderDetails;
     }
 
-    public OrderStatus getOrderStatuses()
-    {
+    public OrderStatus getOrderStatuses() {
         return orderStatuses;
     }
 
-    public void setOrderStatuses(OrderStatus orderStatuses)
-    {
+    public void setOrderStatuses(OrderStatus orderStatuses) {
         this.orderStatuses = orderStatuses;
     }
 
@@ -117,8 +115,7 @@ public class Order
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Order{" +
                 "orderId=" + orderId +
                 ", userId=" + userId +

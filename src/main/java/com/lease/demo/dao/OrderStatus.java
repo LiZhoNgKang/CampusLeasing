@@ -5,7 +5,6 @@ public class OrderStatus
     private Integer oStatusId;
     private String oStatusName;
 
-
     public Integer getoStatusId()
     {
         return oStatusId;

@@ -20,6 +20,7 @@ public class Product
     private Date productDate;
     private MultipartFile productPicFile;
     private Pic pics;
+    private Category category;
     private List<Order> orders;
     private OrderDetail orderDetails;
 
@@ -94,13 +95,11 @@ public class Product
         this.productDate = productDate;
     }
 
-    public Pic getPics()
-    {
+    public Pic getPics() {
         return pics;
     }
 
-    public void setPics(Pic pics)
-    {
+    public void setPics(Pic pics) {
         this.pics = pics;
     }
 
@@ -124,20 +123,24 @@ public class Product
         this.orders = orders;
     }
 
-   public OrderDetail getOrderDetails()
-   {
-       return orderDetails;
-   }
+    public Category getCategory() {
+        return category;
+    }
 
-    public void setOrderDetails(OrderDetail orderDetails)
-    {
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public OrderDetail getOrderDetails() {
+        return orderDetails;
+    }
+
+    public void setOrderDetails(OrderDetail orderDetails) {
         this.orderDetails = orderDetails;
     }
 
-
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Product{" +
                 "productId=" + productId +
                 ", cateId=" + cateId +
@@ -148,6 +151,7 @@ public class Product
                 ", productDate=" + productDate +
                 ", productPicFile=" + productPicFile +
                 ", pics=" + pics +
+                ", category=" + category +
                 ", orders=" + orders +
                 ", orderDetails=" + orderDetails +
                 '}';
