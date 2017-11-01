@@ -1,22 +1,22 @@
 <!doctype html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
 <title>个人中心-修改个人信息</title>
 </head>
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
+<link rel="stylesheet" th:href="@{/css/frontCSS/bootstrap.min.css}">
 <body>
 <div id="personalCenter_body">
 		<div id="personalCenter_top">
-			<a href="home.html"><span id="title">校园租赁</span></a>
+			<a th:href="@{home}"><span id="title">校园租赁</span></a>
 		   	<div id="personalCenter_menu">
 		   		<ul>
-					<li><a href="shopping_cart.html">购物车</a></li>
+					<li><a th:href="@{shoppingCart}">购物车</a></li>
 		   			<li class="fengefu">/</li>
-		   			<li><a href="my_order.html">我的订单</a></li>
+		   			<li><a th:href="@{myOrder}">我的订单</a></li>
 		   			<li class="fengefu">/</li>
-		   			<li><a href="personal_center.html">个人中心</a></li>
+		   			<li><a th:href="@{personalCenter}">个人中心</a></li>
 		   			<li class="fengefu">/</li>
 		   			<li><a href="#">退出登录</a></li>
 		   		</ul>
@@ -28,13 +28,13 @@
         <nav class="col-sm-3 col-md-2 d-none d-sm-block bg-light sidebar">
           <ul class="nav nav-pills flex-column">
             <li class="nav-item">
-              <a class="nav-link active" href="personal_center_modifyPersonalInfo.html" style="width: 100%">修改个人信息 <span class="sr-only">(current)</span></a>
+              <a class="nav-link active" th:href="@{personalCenterModifyPersonalInfo}" style="width: 100%">修改个人信息 <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="personal_center_modifyPassword.html" style="width: 100%">修改密码</a>
+              <a class="nav-link" th:href="@{personalCenterModifyPassword}" style="width: 100%">修改密码</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="personal_center_managerProduct.html" style="width: 100%">管理商品</a>
+              <a class="nav-link" th:href="@{personalCenterManagerProduct}" style="width: 100%">管理商品</a>
             </li>
           </ul>
         </nav>

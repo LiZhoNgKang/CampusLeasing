@@ -14,5 +14,5 @@ public interface ProductService {
 
     List<Product> getProductByCateId(String cateId);
 
-//    Boolean addNewProduct(Product product);
+    List<Product> getProductDetailsByProductId(String productId);
 }

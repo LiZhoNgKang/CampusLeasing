@@ -2,7 +2,10 @@ package com.lease.demo.mapper;
 
 import com.lease.demo.dao.Pic;
 import com.lease.demo.dao.Product;
-import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.annotations.Many;
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -10,7 +13,7 @@ import java.util.List;
  * Created by Administrator on 2017/10/31.
  */
 public interface ProductMapper {
-    @Select("select * from product,pic where product.product_id=pic.product_id")
+    @Select("select * from product,pic where product.product_id=pic.product_id ")
     @Results({
             @Result(id=true,column="product_id",property="productId"),
             @Result(column="product_name",property="productName"),
@@ -35,6 +38,12 @@ public interface ProductMapper {
     })
     List<Product> getProductByCateId(String cateId);
 
-//    @Insert("insert into product(productName,productDisc,productPrice) values(#{productName},#{productDisc},#{productPrice}")
-//    Boolean addNewProduct(Product product);
+    @Select("select * from product,pic where product.product_id=pic.product_id and product.product_id= #{productId}")
+    @Results({
+            @Result(id=true,column="product_id",property="productId"),
+            @Result(column="product_name",property="productName"),
+            @Result(property="pics",column="pic_id",many=@Many(select="com.lease.demo.mapper.ProductMapper.getPicByProductId"))
+
+    })
+    List<Product> findAllProductDetail(String productId);
 }

@@ -22,24 +22,23 @@
 			</div>
 		</div>
 		
-		<div id="productDetails_center">
+		<div id="productDetails_center" th:each=" productDetailList :${productDetailList}">
 			<div id="product_image">
-				<img th:src="@{/image/basketball.jpg}">
+				<img th:src="${productDetailList.pics.picUrl}">
 			</div>
 			<div id="project_details">
 				<table>
 					<tr>
 						<td class="product_message">商品名称：</td>
-						<td class="product_name">篮球</td>
+						<td class="product_name" th:text="${productDetailList.productName}"></td>
 					</tr>
 					<tr>
 						<td class="product_message">商品描述：</td>
-						<td class="product_info">如果你无法简洁的表达你的想法，那只说明你还不够了解它。
-					-- 阿尔伯特·爱因斯坦</td>
+						<td class="product_info" th:text="${productDetailList.productDisc}"></td>
 					</tr>
 					<tr>
 						<td class="product_message">商品租金：</td>
-						<td class="product_rent_price">￥10/天</td>
+						<td class="product_rent_price" th:text="${productDetailList.productPrice+'/天'}">￥10/天</td>
 					</tr>
 					<tr>
 						<td class="product_message">商品租用期限：</td>

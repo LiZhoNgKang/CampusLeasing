@@ -18,7 +18,7 @@
 		<div id="moreCate_center">
 			<div id="shopping_sort_value">
 				<div class="card" style="width: 16rem; float: left" th:each="cateAllList :${cateAllList}">
-					<a th:href="@{cateDetails}"><img class="card-img-top" th:src="${cateAllList.catePic}"  alt="Card image cap"/></a>
+					<a  th:href="'productByCateId?cateId='+${cateAllList.cateId}"><img class="card-img-top" th:src="${cateAllList.catePic}"  alt="Card image cap"/></a>
  				 	<div class="card-body">
     					<a class="card-text" th:href="@{cateDetails}" th:text="${cateAllList.cateName}"></a>
   					</div>

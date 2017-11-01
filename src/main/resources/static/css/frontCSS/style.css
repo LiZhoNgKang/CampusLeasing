@@ -419,7 +419,7 @@
 	height: 800px;
 	margin: -8px;
 	position: fixed;
-	background-color:#687387;
+	background-color:#adadac;
 }
 #addGoods_top{
 	width: 1366px;
@@ -601,7 +601,6 @@
 	width: 1366px;
 	height: 800px;
 	margin: -8px;
-	position: fixed;
 	background-color:#687387;
 }
 #productDetails_top{
@@ -666,7 +665,7 @@
 	border:1px solid red;
 }
 #project_details .lease_limit:active{
-	border:1px solid red;
+	border:3px solid red;
 }
 
 
@@ -719,7 +718,7 @@
 #shoppingCart_body{
 	width: 1366px;
 	margin: -8px;
-	background-color:#687387;
+	background-color:#adadac;
 }
 #shoppingCart_top{
 	width: 1366px;
@@ -986,7 +985,7 @@
 }
 #personalCenter_menu{
 	text-align: center;
-	padding: 20px 0px 0px 1020px;
+	padding: 30px 0px 0px 1020px;
 }
 #personalCenter_menu ul li{
 	float: left;

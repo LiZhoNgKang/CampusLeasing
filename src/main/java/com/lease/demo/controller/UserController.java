@@ -1,8 +1,6 @@
 package com.lease.demo.controller;
 
 import com.lease.demo.dao.Category;
-import com.lease.demo.dao.Order;
-import com.lease.demo.dao.OrderDetail;
 import com.lease.demo.dao.Product;
 import com.lease.demo.service.CateService;
 import com.lease.demo.service.ProductService;
@@ -26,7 +24,8 @@ public class UserController
     public String home(Model model){
         List<Category> findFiveCate=cateService.findFiveCate();
         model.addAttribute("cateFiveList",findFiveCate);
-        List<OrderDetail> findLeaseRank=cateService.findLeaseRank();
+        List<Product> findLeaseRank=cateService.findLeaseRank();
+        System.out.println(findLeaseRank);
         model.addAttribute("rankList",findLeaseRank);
         return "/home";
     }
@@ -34,6 +33,7 @@ public class UserController
     public String userLogin(){
         return "/login";
     }
+
     @RequestMapping("/register")
     public String userRegister(){
         return "/register";
@@ -42,6 +42,11 @@ public class UserController
     @RequestMapping("/shoppingCart")
     public String shoppingCart(){
         return "/shopping_cart";
+    }
+
+    @RequestMapping("/myOrder")
+    public String myOrder(){
+        return "/my_order";
     }
 
     @RequestMapping("/moreCates")

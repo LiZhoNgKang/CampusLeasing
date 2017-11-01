@@ -13,7 +13,7 @@ import java.util.List;
  */
 @SuppressWarnings("all")
 @Service
-public class ProductServiceImpl implements ProductService{
+public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductMapper productMapper;
 
@@ -30,9 +30,11 @@ public class ProductServiceImpl implements ProductService{
         return productMapper.getProductByCateId(cateId);
     }
 
-//    @Override
-//    public Boolean addNewProduct(Product product) {
-//        return productMapper.addNewProduct(product);
-//    }
+    @Override
+    public List<Product> getProductDetailsByProductId(String productId) {
+        return productMapper.findAllProductDetail(productId);
+    }
+
+
 
 }

@@ -23,7 +23,7 @@
 			<div><span class="projectInfo1">由学生提供商品，商品分类繁多，真正的达到有求必应</span></div>
 			<div id="search">
 				<input type="search" class="search" placeholder="请输入您要查找的商品名称">
-				<input type="button" class="btn btn-success" onClick="window.open('cate_details')" value="搜索">
+				<input type="button" class="btn btn-success" value="搜索">
 			</div>
 			<div id="addNewGoods">
 				<a th:href="@{publishProduct}">发布你的商品</a>
@@ -36,7 +36,7 @@
 			</div>
 			<div id="shopping_sort_value" >
 				<div class="card" style="width: 16rem; float: left" th:each="cateFiveList :${cateFiveList}">
- 					 <a th:href="@{cateDetails}"><img class="card-img-top" th:src="${cateFiveList.catePic}"  alt="Card image cap"/></a>
+ 					 <a  th:href="'productByCateId?cateId='+${cateFiveList.cateId}"><img class="card-img-top" th:src="${cateFiveList.catePic}"  alt="Card image cap"/></a>
  				 	<div class="card-body">
     					<a class="card-text" th:href="@{cateDetails}" th:text="${cateFiveList.cateName}"></a>
   					</div>
@@ -52,18 +52,18 @@
 			</div>
 			<div id="rank_value">
 				<div class="card" style="width: 20rem;" th:each="leaseRankList :${rankList}">
-  						<img class="card-img-top" th:src="${leaseRankList.picUrl}"  style="width: 16rem;" alt="Card image cap">
+  						<img class="card-img-top" th:src="${leaseRankList.pics.picUrl}"  style="width: 16rem;" alt="Card image cap">
   					<div class="card-body">
     					<h4 class="card-title" th:text="${leaseRankList.productName}"></h4>
     					<p class="card-text" th:text="${leaseRankList.productDisc}"></p>
     					<div>
-							<p class="card-text">租赁次数:<span th:text="${leaseRankList.odetailNum}+'次'"></span></p>
+							<p class="card-text">租赁次数:<span th:text="${leaseRankList.orderDetails.odetailNum}+'次'"></span></p>
     					</div>
     					<div>
     						<div  class="sort">分类：</div>
-    						<div class="sort_mark" th:text="${leaseRankList.cateName}"></div>
+    						<div class="sort_mark" th:text="${leaseRankList.category.cateName}"></div>
     					</div>
-    					<a th:href="@{productDetails}" class="btn btn-primary">查看详情</a>
+    					<a th:href="'getProductDetailsByProductId?productId='+${leaseRankList.productId}" class="btn btn-primary">查看详情</a>
   					</div>
 				</div>
 				

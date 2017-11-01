@@ -14,9 +14,9 @@
 		   		<ul>
 					<li><a th:href="@{shoppingCart}">购物车</a></li>
 		   			<li class="fengefu">/</li>
-		   			<li><a th:href="@{my_order}">我的订单</a></li>
+		   			<li><a th:href="@{myOrder}">我的订单</a></li>
 		   			<li class="fengefu">/</li>
-		   			<li><a th:href="@{personal_center}">个人中心</a></li>
+		   			<li><a th:href="@{personalCenter}">个人中心</a></li>
 		   			<li class="fengefu">/</li>
 		   			<li><a href="#">退出登录</a></li>
 		   		</ul>
@@ -32,11 +32,16 @@
 				<form th:action="@{publishProduct}" method="post" name="formNewProduct">
 					<span>所属商品类别</span>
 					<select>
-						<option value="0">数码设备</option>
-						<option value="1">图书</option>
+						<option value="0">电脑</option>
+						<option value="1">服装</option>
 						<option value="2">书籍</option>
-						<option value="3">户外运动</option>
-						<option value="4">日常用品</option>
+						<option value="3">运动器械</option>
+						<option value="4">雨伞</option>
+						<option value="5">自行车</option>
+						<option value="6">单反</option>
+						<option value="7">跑鞋</option>
+						<option value="8">打印机</option>
+						<option value="9">手机</option>
 					</select>
 					<span>商品名称</span>
 					<input type="text" placeholder="商品名称">
