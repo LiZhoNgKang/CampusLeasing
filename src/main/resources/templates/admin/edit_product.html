@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>修改商品</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+<div class="container-fluid">
+    <div class="row" >
+        <nav th:replace="admin/left_nav :: left_nav"></nav>
+    </div>
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+
+        <h1>修改商品</h1>
+
+        <form th:action="@{updateProduct}" enctype="multipart/form-data" method="post">
+            <div style="width: 600px;margin-left: 200px">
+                <input type="hidden" id="productId" name="productId" value="0"/>
+
+                <fieldset class="form-group">
+                    <label for="productName">商品名称</label>
+                    <input type="text" class="form-control" id="productName" name="productName" placeholder="商品名称" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="productCate">商品类型</label>
+                    <select class="form-control" id="productCate" name="productCate" required>
+                        <option>自行车</option>
+                        <option>单反</option>
+                        <option>电脑</option>
+                        <option>书籍</option>
+                        <option>男装</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="leasePrice">租赁价格</label>
+                    <input type="text" class="form-control" id="leasePrice" name="leasePrice" placeholder="租赁价格" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="productDisc">商品描述</label>
+                    <textarea class="form-control" id="productDisc" name="productDisc" rows="3"></textarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="productDate"> 商品入货日期（格式yyyy-mm-dd，如2017-01-01）</label>
+
+                    <input class="form-control" name="productDate" id="productDate"
+                           value="2017-10-25"
+                           type="date"  placeholder="商品上架日期" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="productPic">商品图片</label>
+                    <input type="file" class="form-control" id="productPicFile" name="productPicFile">
+                    <input type="hidden" name="productPic"  id="productPic" value="">
+                </fieldset>
+                <button type="submit" class="btn btn-outline-info">确定</button>
+                <button type="reset" class="btn btn-outline-secondary">重置</button>
+            </div>
+        </form>
+
+    </main>
+</div>
+
+</body>
+</html>

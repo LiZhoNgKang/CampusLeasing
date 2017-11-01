@@ -1,0 +1,145 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>购物车</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>  
+<body>
+<div id="shoppingCart_body">
+		<div id="shoppingCart_top">
+			<a th:href="@{home}"><span id="title">校园租赁</span></a>
+		   	<div id="shoppingCart_menu">
+		   		<ul>
+		   			<li><a th:href="@{shopping_cart}">购物车</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a th:href="@{my_order}">我的订单</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a th:href="@{personal_center}">个人中心</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a href="#">退出登录</a></li>
+		   		</ul>
+		   	</div>
+		</div>
+		
+		<div id="shoppingCart_center">
+			<div class="shoppingCart_title">
+				购物车
+				<hr>
+			</div>
+			<div id="shoppingCart_form">
+				<div id="shoppingCart_titleRow">
+					<table>
+						<tr>
+							<td><input type="checkbox" class="cart_checkbox" id="sure">全选</td>
+							<td class="cart_info">商品信息</td>
+							<td>租期</td>
+							<td>租金</td>
+							<td>数量</td>
+							<td>小计</td>
+							<td>操作</td>
+						</tr>
+					</table>
+				</div>
+				<div id="shoppingCart_orderRow">
+					<form>
+						<table>
+							<tr class="cart_row">
+								<td><input type="checkbox" class="cart_checkbox"></td>
+								<td class="cart_info"><img th:src="@{/image/basketball.jpg}" class="cart_img">篮球</td>
+								<td class="day">1天</td>
+								<td class="price">￥10.0</td>
+								<td>
+									<input class="min" name="numberSub" type="button" value="-" onClick="numberSub()"> 
+									<input class="text_box" name="number" type="text" value="1" > 
+									<input class="add" name="numberAdd" type="button" value="+" > 
+								</td>
+								<td><b>￥10.0</b></td>
+								<td><a href="#" class="cart_order_delete">删除</a></td>
+							</tr>
+							<tr>
+								<td colspan="7"><hr></td>
+							</tr>
+
+							
+						</table>
+					</form>
+				</div>
+				<div id="shoppingCart_payRow">
+					<table>
+						<tr class="pay_row">
+							<td class="chooseAll"><input type="checkbox" class="cart_checkbox" id="resure">全选</td>
+							<td class="deleteSelectGoods"><a href="#">删除选中的商品</a></td>
+							<td colspan="5" class="allPrice">总计：<span id="onePrice">￥30.0</span></td>
+							<td><input type="button" class="pay_btn" value="结算" onClick=""></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>	
+</div>
+</body>
+<!---实现全选的js--->
+<script type="text/javascript">
+	var sure=document.getElementById('sure');//获取id名为sure的元素
+	var resure=document.getElementById('resure');//获取id名为sure的元素
+	var list=document.getElementById('shoppingCart_orderRow');//获取id名为shoppingCart_orderRow的元素
+	var lis=list.getElementsByClassName('cart_checkbox');//定义一个变量为lis的元素来获取list内类名为cart_checkbox标签
+	var index =0;
+//定义index来计数
+	sure.onclick = function(){
+		if(sure.checked ==true){
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].checked=true;
+				index=10;
+			}
+		}else{
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].checked = false;
+				index=0;
+			}
+		}
+	}
+//定义index来计数
+	resure.onclick = function(){
+		if(resure.checked ==true){
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].checked=true;
+				index=10;
+			}
+		}else{
+			for (var i = 0; i < lis.length; i++) {
+				lis[i].checked = false;
+				index=0;
+			}
+		}
+	}	
+</script>
+<!---实现数量加减的js--->
+<script>
+	$(function(){  
+    var t = $(".text_box");  
+    $(".add").click(function(){       
+        t.val(parseInt(t.val())+1)  
+        setTotal();  
+    })  
+    $(".min").click(function(){  
+        t.val(parseInt(t.val())-1)  
+        if(parseInt(t.val())<0){   
+            t.val(0);   
+        }   
+        setTotal();  
+    })  
+    function setTotal(){  
+    //toFixed(2) 表示保留两位小数 
+		
+        $(".allPrice").html("<b style='color:red'>￥：</b>"+'<span>'+(parseInt(t.val())*10.0).toFixed(2)+'</span>');
+		
+		
+    }  
+    setTotal();  
+}) 
+	
+</script>
+</html>

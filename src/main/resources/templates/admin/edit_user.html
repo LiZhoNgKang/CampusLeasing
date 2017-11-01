@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>修改用户信息</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+<div class="container-fluid">
+    <div class="row" >
+        <nav th:replace="admin/left_nav :: left_nav"></nav>
+    </div>
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+
+        <h1>修改用户</h1>
+
+        <form th:action="@{updateUser}" enctype="multipart/form-data" method="post">
+            <div style="width: 400px;margin-left: 240px">
+                <input type="hidden" id="userId" name="userId" value="0"/>
+
+                <fieldset class="form-group">
+                    <label for="userName">用户名</label>
+                    <input type="text" class="form-control" id="userName" name="userName" th:value="111" disabled>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="password">确认密码</label>
+                    <input type="password" class="form-control" id="password1" name="password1" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="sex">性别</label>
+                    <div class="radio-inline">
+                        <input type="radio" id="sex1" name="sex" value="0" checked> 男
+                        <input type="radio" id="sex2" name="sex" value="1"> 女
+                    </div>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="mobile">手机号码</label>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                </fieldset>
+                <button type="submit" class="btn btn-outline-info">确定</button>
+            </div>
+        </form>
+
+    </main>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>商品分类管理</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+<div class="container-fluid">
+    <div class="row" >
+        <nav th:replace="admin/left_nav :: left_nav"></nav>
+    </div>
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+
+        <h1>商品分类管理</h1>
+
+        <div class="form-group form-group-sm">
+            <button type="button" class="btn btn-outline-success btn-sm" onclick="window.location.href='handleProductCate'">添加商品分类</button>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">商品分类名称</th>
+                <th scope="col">商品分类图片</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cate,cateStatu:${cateList}">
+                <th scope="row" th:text="${cateStatu.count}">1</th>
+                <td th:text="${cate.cateName}">电脑</td>
+                <td>
+                    <img th:src="${cate.catePic}" th:width="32" th:height="32">
+                </td>
+                <td>
+                    <a th:href="@{editProductCate}">修改</a>
+                    <a th:href="@{deleteProductCate}">删除</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </main>
+</div>
+
+</body>
+</html>

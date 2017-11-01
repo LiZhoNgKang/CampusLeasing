@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>添加商品分类</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+<div class="container-fluid">
+    <div class="row" >
+        <nav th:replace="admin/left_nav :: left_nav"></nav>
+    </div>
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+
+        <h1>添加商品</h1>
+
+        <form enctype="multipart/form-data" method="post">
+            <div style="width: 600px;margin-left: 200px">
+
+                <fieldset class="form-group">
+                    <label for="cateName">商品分类名称</label>
+                    <input type="text" class="form-control" id="cateName" name="cateName" placeholder="商品分类名称" required>
+                </fieldset>
+                <fieldset class="form-group">
+                    <label for="catePic">商品分类图片</label>
+                    <input type="file" class="form-control" id="catePicFile" name="catePicFile" required>
+                    <input type="hidden" name="catePic"  id="catePic" value=" ">
+                </fieldset>
+                <button type="submit" class="btn btn-outline-info">确定</button>
+                <button type="reset" class="btn btn-outline-secondary">重置</button>
+            </div>
+        </form>
+
+    </main>
+</div>
+
+</body>
+</html>

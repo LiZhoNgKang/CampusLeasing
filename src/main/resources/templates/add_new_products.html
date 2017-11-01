@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>发布新商品</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
+<body>
+<div id="addGoods_body">
+		<div id="addGoods_top">
+			<a th:href="@{home}"><span id="title">校园租赁</span></a>
+		   	<div id="addGoods_menu">
+		   		<ul>
+					<li><a th:href="@{shoppingCart}">购物车</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a th:href="@{my_order}">我的订单</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a th:href="@{personal_center}">个人中心</a></li>
+		   			<li class="fengefu">/</li>
+		   			<li><a href="#">退出登录</a></li>
+		   		</ul>
+		   	</div>
+		</div>
+		
+		<div id="addGoods_center">
+			<div class="addGoods_title">
+				发布你的商品
+				<hr>
+			</div>
+			<div class="addGoods_form">
+				<form th:action="@{publishProduct}" method="post" name="formNewProduct">
+					<span>所属商品类别</span>
+					<select>
+						<option value="0">数码设备</option>
+						<option value="1">图书</option>
+						<option value="2">书籍</option>
+						<option value="3">户外运动</option>
+						<option value="4">日常用品</option>
+					</select>
+					<span>商品名称</span>
+					<input type="text" placeholder="商品名称">
+					<span>商品描述</span>
+					<textarea placeholder="商品描述"></textarea>
+					<span>商品价格</span>
+					<input type="text" placeholder="商品价格">
+					<span>商品图片</span>
+					<input type="file">
+					<input type="submit" class="submit">
+					<input type="reset" class="reset">
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

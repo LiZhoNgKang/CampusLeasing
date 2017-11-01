@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>商品管理</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+<div class="container-fluid">
+    <div class="row" >
+        <nav th:replace="admin/left_nav :: left_nav"></nav>
+    </div>
+    <form th:action="@{productSearch}">
+    <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+
+        <h1>商品管理</h1>
+
+        <div class="form-inline">
+            <div class="form-group form-group-sm">
+                <label for="productCate">商品分类</label>
+                <select class="form-control form-control-sm" id="productCate" name="productCate">
+                    <option th:value="0">--所有类别--</option>
+                    <option th:each="cate:${cateList}" th:value="${cate.cateId}" th:text="${cate.cateName}" >电脑</option>
+                </select>
+            </div>
+            <div class="form-group form-group-sm">
+                <label for="productName">商品名称</label>
+                <input type="text" class="form-control form-control-sm" id="productName" name="productName" placeholder="商品名称">
+            </div>
+            <button type="submit" class="btn btn-outline-info btn-sm">搜索</button>
+        </div>
+        <button type="button" id="addBtn" class="btn btn-outline-success btn-sm"
+        style="margin: -60px 0px 0px 1000px" onclick="window.location.href='handleProducts'">添加商品</button>
+
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">商品图片</th>
+                <th scope="col">商品名称</th>
+                <th scope="col">租赁价格</th>
+                <th scope="col">商品描述</th>
+                <th scope="col">租赁次数</th>
+                <th scope="col">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product :${productList}">
+                <th scope="row" th:text="${productStat.count}">1</th>
+                <td>
+                    <img th:src="${product.pic.picUrl}" th:width="30" th:height="30">
+                </td>
+                <td th:text="${product.productName}">篮球</td>
+                <td th:text="${product.productPrice}">128</td>
+                <td th:text="${product.productDisc}">耐打</td>
+                <td th:text="${product.orderDetails.odetailNum}">120</td>
+                <td>
+                    <a th:href="@{editProduct}">修改</a>
+                    <a th:href="@{deleteProduct}">删除</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+    </form>
+</div>
+
+</body>
+</html>

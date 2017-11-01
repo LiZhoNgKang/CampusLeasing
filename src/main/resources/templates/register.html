@@ -1,0 +1,42 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>注册页面</title>
+</head>
+<link rel="stylesheet" th:href="@{/css/frontCSS	/style.css}">
+<body>
+<div id="reg_body">
+		<div id="reg_top">
+			<a th:href="@{home}"><span id="title">校园租赁</span></a>
+		   <div id="login"><a th:href="@{login}" class="login">登录</a></div>
+		   <div id="reg"><a th:href="@{register}" class="reg">注册</a></div>
+		</div>
+		
+		<div id="reg_center">
+			<div id="reg_form">
+				<div class="reg_form_title">
+					<div class="line"></div>
+					<div class="reg_title">注册</div>
+					<div class="line"></div>
+				</div>
+				<div class="reg_username">
+					<input type="text" placeholder="用户名">
+				</div>
+				<div class="reg_passwd">
+					<input type="password" placeholder="密码">
+				</div>
+				<div class="reg_repasswd">
+					<input type="password" placeholder="再输一次密码">
+				</div>
+				<div class="reg_button">
+					<input type="button" value="注册">
+				</div>
+				<div id="have_number">
+					<span>已有账户？</span><a th:href="@{login}">登录</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

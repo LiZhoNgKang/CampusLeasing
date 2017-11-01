@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<header th:fragment="header_nav">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">校园租赁后台管理</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{home}">首页 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{productSearch}">商品管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{category}">商品分类管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{userSearch}">用户管理</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{orderSearch}">订单管理</a>
+                </li>
+            </ul>
+            <button class="btn btn-outline-warning my-2 my-sm-0" type="submit">退出登录</button>
+        </div>
+    </nav>
+</header>
+</html>

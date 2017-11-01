@@ -1,0 +1,64 @@
+<!Doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>首页</title>
+
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+</head>
+
+<body>
+<div th:replace="admin/header_nav :: header_nav"></div>
+
+<div class="container-fluid">
+    <div class="row" >
+    <nav th:replace="admin/left_nav :: left_nav"></nav>
+
+        <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
+            <h1>后台管理</h1>
+
+            <section class="row text-center placeholders">
+                <div class="col-6 col-sm-3 placeholder">
+                    <a th:href="@{product}"><img th:src="@{/image/product_admin.png}" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail"></a>
+                    <h4>商品管理</h4>
+                    <div class="text-muted">对商品进行添加、修改和删除</div>
+                </div>
+                <div class="col-6 col-sm-3 placeholder">
+                    <a th:href="@{category}"><img th:src="@{/image/cate_admin.png}" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail"></a>
+                    <h4>商品分类管理</h4>
+                    <span class="text-muted">对商品分类进行添加、修改和删除</span>
+                </div>
+                <div class="col-6 col-sm-3 placeholder">
+                    <a th:href="@{user}"><img th:src="@{/image/user_admin.png}" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail"></a>
+                    <h4>用户管理</h4>
+                    <span class="text-muted">对用户进行修改和删除</span>
+                </div>
+                <div class="col-6 col-sm-3 placeholder">
+                    <a th:href="@{order}"><img th:src="@{/image/order_admin.png}" class="img-fluid rounded-circle" alt="Generic placeholder thumbnail"></a>
+                    <h4>订单管理</h4>
+                    <span class="text-muted">对订单进行删除</span>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+
+</body>
+</html>

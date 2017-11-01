@@ -1,0 +1,56 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>分类详情</title>
+	<style type="text/css">
+		.active{
+			background-color: #337ab7;
+		}
+	</style>
+</head>
+<link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" th:href="@{/css/frontCSS/bootstrap.css}">
+<script th:src="@{/js/bootstrap.js/bootstrap.min.js}"></script>
+<script th:src="@{/js/jquery-1.11.1.min.js}"></script>
+
+<body>
+<div id="cateDetails_body">
+		<div id="cateDetails_top">
+			<a th:href="@{home}"><span id="title">校园租赁</span></a>
+		   <div id="login"><a th:href="@{login}" class="login">登录</a></div>
+		   <div id="reg"><a th:href="@{register}" class="reg">注册</a></div>
+		</div>
+		
+		<div id="cateDetails_center">
+			<div id="cate_nav">
+				<div class="list-group" th:each="leftList :${cateDetailList}">
+				  <a th:href="'productByCateId?cateId='+${leftList.cateId}"  class="list-group-item list-group-item-action " th:text="${leftList.cateName}">
+				  </a>
+
+				</div>
+			</div>
+			<div id="cate_details_list">
+				<div class="card" style="width: 20rem;" th:each="rightList :${productList}">
+				   <img th:src="${rightList.pics.picUrl}" class="card-img-top" alt="Card image cap">
+					  <div class="card-body">
+							<h4 class="card-title" th:text="${rightList.productName}"></h4>
+							<p class="card-text">租金：<span th:text="'￥'+${rightList.productPrice+'/天'}"></span></p>
+							<a th:href="@{productDetails}" class="btn btn-primary">查看详情</a>
+				 	 </div>
+				</div>
+			</div>
+		</div>
+</div>
+</body>
+<script>
+    $(function(){
+		$(".list-group a").click(function () {
+//		    $(".list-group a").removeClass("active");
+//			$(this).addClass("active");
+            $(this).addClass("active").siblings("a").removeClass("active");
+        })
+    });
+</script>
+</html>
