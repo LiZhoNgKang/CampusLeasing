@@ -6,7 +6,7 @@ public class User
 {
     private int userId;
     private String userName;
-    private String passWord;
+    private String password;
     private String address;
     private String mobile;
     private Integer userAge;
@@ -34,14 +34,19 @@ public class User
         this.userName = userName;
     }
 
-    public String getPassWord()
+    public String getPassword()
     {
-        return passWord;
+        return password;
     }
 
-    public void setPassWord(String passWord)
+    public void setPassword(String password)
     {
-        this.passWord = passWord;
+        this.password = password;
+    }
+
+    public Integer getUserAge()
+    {
+        return userAge;
     }
 
     public String getAddress()
@@ -105,7 +110,7 @@ public class User
         return "User{" +
                 "userId=" + userId +
                 ", userName='" + userName + '\'' +
-                ", passWord='" + passWord + '\'' +
+                ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", userAge=" + userAge +

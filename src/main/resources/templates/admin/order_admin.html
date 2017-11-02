@@ -59,7 +59,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="order,orderStatu :${orderList}">
+            <tr th:each="order:${orderList}">
                 <th scope="row" th:text="${orderStatu.count}"></th>
                 <td th:text="${order.orderCode}">201710251154512</td>
                 <td th:text="${order.user.userName}">Mark</td>

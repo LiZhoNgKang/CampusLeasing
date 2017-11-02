@@ -32,12 +32,12 @@ public class AdminController
     }
 
     @RequestMapping("/productSearch")
-    public String product(@RequestParam(required = false) String productCate,
+    public String product(@RequestParam(required = false) String cateId,
                           @RequestParam(required = false) String productName, Model model)
     {
-        System.out.println(productCate);
+        System.out.println(cateId);
         List<Category> categoryList = adminService.getAllCategory();
-//        List<Product> productList = adminService.searchProduct(productCate,productName);
+//        List<Product> productList = adminService.searchProduct(cateId,productName);
 //        model.addAttribute("productList",productList);
         model.addAttribute("cateList",categoryList);
         return "admin/product_admin";
@@ -66,19 +66,39 @@ public class AdminController
                         @RequestParam(required = false) String orderCode, @RequestParam(required = false) String startDate,
                         @RequestParam(required = false) String endDate, Model model)
     {
-        System.out.println(oStatusId+startDate);
         List<OrderStatus> orderStatuses = adminService.getAllOrderStatus();
-        List<Order> orderList = adminService.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
+//        List<Order> orderList = adminService.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
 //        model.addAttribute("orderList",orderList);
         model.addAttribute("orderStatuses",orderStatuses);
-        System.out.println(orderList);
+//        System.out.println(orderList);
         return "admin/order_admin";
     }
 
-    @RequestMapping("/handleUser")
+    @RequestMapping("/toAddUser")
     public String handleUser()
     {
         return "admin/add_user";
+    }
+
+    @RequestMapping("/addUser")
+    public String addUser(User user,Model model)
+    {
+        String msg;
+        String href;
+        boolean rel = adminService.addNewUser(user);
+        if (rel)
+        {
+            msg = "添加成功！";
+            href = "userSearch";
+        }
+        else
+        {
+            msg = "添加失败，请重新添加！";
+            href = "toAddUser";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
     }
 
     @RequestMapping("/handleProducts")

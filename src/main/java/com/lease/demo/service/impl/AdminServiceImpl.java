@@ -67,6 +67,7 @@ public class AdminServiceImpl implements AdminService
         {
             userName = "%" + userName + "%";
         }
+        System.out.println(oStatusId+"222"+orderCode);
         return adminMapper.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
     }
 
@@ -77,15 +78,15 @@ public class AdminServiceImpl implements AdminService
     }
 
     @Override
-    public List<Product> searchProduct(String productCate, String productName)
+    public List<Product> searchProduct(String cateId, String productName)
     {
-        if (productCate == null)
+        if (cateId.equals("0"))
         {
-            productCate = "%%";
+            cateId = "%%";
         }
         else
         {
-            productCate = productCate;
+            cateId = cateId;
         }
 
 
@@ -97,7 +98,13 @@ public class AdminServiceImpl implements AdminService
         {
             productName = "%" + productName + "%";
         }
-        return adminMapper.searchProduct(productCate,productName);
+        return adminMapper.searchProduct(cateId,productName);
+    }
+
+    @Override
+    public boolean addNewUser(User user)
+    {
+        return adminMapper.addNewUser(user);
     }
 
 

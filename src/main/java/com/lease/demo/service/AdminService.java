@@ -11,9 +11,12 @@ public interface AdminService
 
     List<OrderStatus> getAllOrderStatus();
 
-    List<Order> searchOrder(String oStatusId, String orderCode, String userName, String startDate, String endDate);
+    List<Order> searchOrder(String oStatusId, String orderCode,
+                            String userName, String startDate, String endDate);
 
     List<Category> getAllCategory();
 
-    List<Product> searchProduct(String productCate, String productName);
+    List<Product> searchProduct(String cateId, String productName);
+
+    boolean addNewUser(User user);
 }
