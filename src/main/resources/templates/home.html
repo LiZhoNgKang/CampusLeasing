@@ -38,7 +38,7 @@
 				<div class="card" style="width: 16rem; float: left" th:each="cateFiveList :${cateFiveList}">
  					 <a  th:href="'productByCateId?cateId='+${cateFiveList.cateId}"><img class="card-img-top" th:src="${cateFiveList.catePic}"  alt="Card image cap"/></a>
  				 	<div class="card-body">
-    					<a class="card-text" th:href="@{cateDetails}" th:text="${cateFiveList.cateName}"></a>
+    					<a class="card-text" th:href="'productByCateId?cateId='+${cateFiveList.cateId}" th:text="${cateFiveList.cateName}"></a>
   					</div>
 				</div>
 				

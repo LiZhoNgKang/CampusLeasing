@@ -21,11 +21,13 @@ public interface CateMapper {
     List<Category> findFiveCate();
 
 
-    @Select("select * from product,pic,`order`,orderdetail,category \n" +
-            "where product.product_id=pic.product_id and \n" +
-            "product.product_id=orderdetail.product_id and \n" +
-            "`order`.order_id=orderdetail.order_id and\n" +
-            "product.cate_id=category.cate_id order by odetail_num desc limit 4")
+    @Select("select pt.product_id,pt.product_name,pt.product_disc,pt.product_price,\n" +
+            "pc.pic_id,pc.pic_url,o.order_id,od.odetail_id,od.odetail_num,c.cate_id,c.cate_name \n" +
+            "from product pt,pic pc,`order` o,orderdetail od,category c \n" +
+            "where pt.product_id=pc.product_id and \n" +
+            "pt.product_id=od.product_id and \n" +
+            "o.order_id=od.order_id and\n" +
+            "pt.cate_id=c.cate_id order by od.odetail_num desc limit 4")
     @Results({
             @Result(id=true,column="product_id",property="productId"),
             @Result(column="product_name",property="productName"),
@@ -35,7 +37,6 @@ public interface CateMapper {
             @Result(property="orderDetails",column="odetail_id",many=@Many(select="com.lease.demo.mapper.CateMapper.getOrderDetailByProductId"))
 
     })
-
     List<Product>  findLeaseRank();
 
     @Select("select * from category where cate_id=#{cateId}")

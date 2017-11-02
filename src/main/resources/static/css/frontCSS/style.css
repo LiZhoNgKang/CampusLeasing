@@ -418,7 +418,6 @@
 	width: 1366px;
 	height: 800px;
 	margin: -8px;
-	position: fixed;
 	background-color:#adadac;
 }
 #addGoods_top{
@@ -601,7 +600,7 @@
 	width: 1366px;
 	height: 800px;
 	margin: -8px;
-	background-color:#687387;
+	background-color:#adadac;
 }
 #productDetails_top{
 	width: 1366px;
@@ -789,7 +788,7 @@
 	width: 200px;
 }
 #shoppingCart_orderRow{
-	background-color:#d98243;
+	background-color:#809c98;
 	margin-top: 15px;
 	width: 780px;
 	height:auto;

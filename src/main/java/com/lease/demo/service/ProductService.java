@@ -15,4 +15,12 @@ public interface ProductService {
     List<Product> getProductByCateId(String cateId);
 
     List<Product> getProductDetailsByProductId(String productId);
+
+    Boolean addNewProduct(Product product);
+
+    String getMaxProductId();
+
+
+
+    boolean addPic(String productId, String image);
 }

@@ -2,10 +2,7 @@ package com.lease.demo.mapper;
 
 import com.lease.demo.dao.Pic;
 import com.lease.demo.dao.Product;
-import org.apache.ibatis.annotations.Many;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -46,4 +43,18 @@ public interface ProductMapper {
 
     })
     List<Product> findAllProductDetail(String productId);
+
+
+    @Insert("INSERT into product (cate_id,product_name,product_disc,product_price,product_num,product_date) \n" +
+            "VALUES(#{cateId},#{productName},#{productDisc},#{productPrice},#{productNum},NOW())")
+    Boolean addNewProduct(Product product);
+
+    @Select("select max(product_id) from product")
+    String getMaxProductId();
+
+    @Insert("INSERT INTO pic(product_id,pic_url) VALUES(#{productId},#{image)")
+    void addPicByProductId(@Param("productId") String productId,@Param("image") String image);
+
+    @Insert("INSERT INTO pic(product_id,pic_url) VALUES(#{productId},#{image})")
+    boolean addPic(@Param("productId") String productId,@Param("image") String image);
 }

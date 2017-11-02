@@ -29,30 +29,23 @@
 				<hr>
 			</div>
 			<div class="addGoods_form">
-				<form th:action="@{publishProduct}" method="post" name="formNewProduct">
+				<form th:action="@{addProduct}" method="post" name="formNewProduct" enctype="multipart/form-data">
 					<span>所属商品类别</span>
-					<select>
-						<option value="0">电脑</option>
-						<option value="1">服装</option>
-						<option value="2">书籍</option>
-						<option value="3">运动器械</option>
-						<option value="4">雨伞</option>
-						<option value="5">自行车</option>
-						<option value="6">单反</option>
-						<option value="7">跑鞋</option>
-						<option value="8">打印机</option>
-						<option value="9">手机</option>
+					<select name="cateId" id="cateId">
+						<option  th:each="categoryList :${categoryList}" th:value="${categoryList.cateId}" th:text="${categoryList.cateName}"></option>
 					</select>
 					<span>商品名称</span>
-					<input type="text" placeholder="商品名称">
+					<input type="text" name="productName" id="productName" placeholder="商品名称">
 					<span>商品描述</span>
-					<textarea placeholder="商品描述"></textarea>
+					<textarea name="productDisc" id="productDisc" placeholder="商品描述"></textarea>
 					<span>商品价格</span>
-					<input type="text" placeholder="商品价格">
+					<input type="text" name="productPrice" id="productPrice" placeholder="商品价格">
+					<span>商品数量</span>
+					<input type="text" name="productNum" id="productNum" placeholder="商品价格" value="1">
 					<span>商品图片</span>
-					<input type="file">
-					<input type="submit" class="submit">
-					<input type="reset" class="reset">
+					<input type="file" name="productPic" id="productPic">
+					<input type="submit" class="submit" name="submitButton">
+					<input type="reset" class="reset" name="resetButton">
 				</form>
 			</div>
 		</div>

@@ -35,6 +35,20 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.findAllProductDetail(productId);
     }
 
+    @Override
+    public Boolean addNewProduct(Product product) {
+        return productMapper.addNewProduct(product);
+    }
+
+    @Override
+    public String getMaxProductId() {
+        return productMapper.getMaxProductId();
+    }
+
+    @Override
+    public boolean addPic(String productId, String image) {
+        return productMapper.addPic(productId,image);
+    }
 
 
 }
