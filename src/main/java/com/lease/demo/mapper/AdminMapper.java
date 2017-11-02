@@ -76,4 +76,7 @@ public interface AdminMapper
     @Insert("insert into user(user_name,password,user_sex,mobile,rank) " +
             "values(#{userName},#{password},#{userSex},#{mobile},1)")
     boolean addNewUser(User user);
+
+    @Insert("insert into Category(cate_name,cate_pic) values(#{cateName},#{cateImage})")
+    boolean addCate(@Param("cateName") String cateName,@Param("cateImage") String cateImage);
 }

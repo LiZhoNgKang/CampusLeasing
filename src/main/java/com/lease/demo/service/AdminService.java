@@ -19,4 +19,6 @@ public interface AdminService
     List<Product> searchProduct(String cateId, String productName);
 
     boolean addNewUser(User user);
+
+    boolean addCate(String cateName, String cateImage);
 }

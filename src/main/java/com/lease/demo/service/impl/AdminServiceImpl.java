@@ -107,5 +107,14 @@ public class AdminServiceImpl implements AdminService
         return adminMapper.addNewUser(user);
     }
 
+    @Override
+    public boolean addCate(String cateName, String cateImage)
+    {
+        return adminMapper.addCate(cateName,cateImage);
+    }
+
+
+
+
 
 }

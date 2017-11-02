@@ -3,12 +3,13 @@ package com.lease.demo.controller;
 
 import com.lease.demo.dao.*;
 import com.lease.demo.service.AdminService;
-import com.sun.org.apache.xpath.internal.operations.Or;
+import com.lease.demo.util.UploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,6 +19,8 @@ public class AdminController
 {
     @Autowired
     private AdminService adminService;
+    @Autowired
+     UploadUtil uploadUtil;
 
     @RequestMapping("")
     public String loginView()
@@ -88,12 +91,12 @@ public class AdminController
         boolean rel = adminService.addNewUser(user);
         if (rel)
         {
-            msg = "添加成功！";
+            msg = "添加用户成功！";
             href = "userSearch";
         }
         else
         {
-            msg = "添加失败，请重新添加！";
+            msg = "添加用户失败，请重新添加！";
             href = "toAddUser";
         }
         model.addAttribute("msg", msg);
@@ -107,11 +110,35 @@ public class AdminController
         return "admin/add_product";
     }
 
-    @RequestMapping("/handleProductCate")
+    @RequestMapping("/toAddProductCate")
     public String handleProductCate()
     {
         return "admin/add_product_cate";
     }
+
+    @RequestMapping("/addCate")
+    public String addCate(String cateName ,MultipartFile catePic,Model model)
+    {
+        String msg;
+        String href;
+        String cateImage = uploadUtil.uploadImage(catePic);
+        boolean rel = adminService.addCate(cateName,cateImage);
+        if (rel)
+        {
+            msg = "添加分类成功！";
+            href = "category";
+        }
+        else
+        {
+            msg = "添加分类失败，请重新添加！";
+            href = "toAddProductCate";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
+
+    }
+
 
     @RequestMapping("/editProduct")
     public String editProduct()
