@@ -18,7 +18,7 @@ public class Product
     private String productDisc;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date productDate;
-    private MultipartFile productPicFile;
+    private String  productPicFile;
     private Pic pics;
     private Category category;
     private List<Order> orders;
@@ -103,13 +103,11 @@ public class Product
         this.pics = pics;
     }
 
-    public MultipartFile getProductPicFile()
-    {
+    public String getProductPicFile() {
         return productPicFile;
     }
 
-    public void setProductPicFile(MultipartFile productPicFile)
-    {
+    public void setProductPicFile(String productPicFile) {
         this.productPicFile = productPicFile;
     }
 
@@ -149,7 +147,7 @@ public class Product
                 ", productNum='" + productNum + '\'' +
                 ", productDisc='" + productDisc + '\'' +
                 ", productDate=" + productDate +
-                ", productPicFile=" + productPicFile +
+                ", productPicFile='" + productPicFile + '\'' +
                 ", pics=" + pics +
                 ", category=" + category +
                 ", orders=" + orders +

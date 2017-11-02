@@ -1,5 +1,7 @@
 package com.lease.demo.dao;
 
+import java.util.List;
+
 public class OrderDetail
 {
     private int odetailId;
@@ -10,8 +12,8 @@ public class OrderDetail
     private String odetailName;
     private String odetailPic;
     private String odetailDay;
-    private Order order;
-    private Product product;
+    private List<Order> order;
+    private List<Product> product;
 
 
     public int getOdetailId()
@@ -94,21 +96,19 @@ public class OrderDetail
         this.odetailDay = odetailDay;
     }
 
-    public Order getOrder()
-    {
+    public List<Order> getOrder() {
         return order;
     }
 
-    public void setOrder(Order order)
-    {
+    public void setOrder(List<Order> order) {
         this.order = order;
     }
 
-    public Product getProduct() {
+    public List<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(List<Product> product) {
         this.product = product;
     }
 
