@@ -77,6 +77,16 @@ public interface AdminMapper
             "values(#{userName},#{password},#{userSex},#{mobile},1)")
     boolean addNewUser(User user);
 
-    @Insert("insert into Category(cate_name,cate_pic) values(#{cateName},#{cateImage})")
-    boolean addCate(@Param("cateName") String cateName,@Param("cateImage") String cateImage);
+    @Insert("insert into Category(cate_name,cate_pic) values(#{cateName},#{pic})")
+    boolean addCate(@Param("cateName") String cateName, @Param("pic") String pic);
+
+    @Insert("insert into product(cate_id,product_name,product_price,product_num,product_disc,product_date)" +
+            " values(#{cateId},#{productName},#{productPrice},#{productNum},#{productDisc},#{productDate})")
+    boolean addProduct(Product product);
+
+    @Select("select max(product_id) from product")
+    String getMaxProductId();
+
+    @Insert("insert into pic(product_id,pic_url) values(#{maxProductId},#{image})")
+    boolean addProductPic(@Param("maxProductId") String maxProductId, @Param("image") String image);
 }

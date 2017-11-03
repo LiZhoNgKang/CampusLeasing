@@ -18,7 +18,6 @@ public class Product
     private String productDisc;
     @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date productDate;
-    private String  productPicFile;
     private Pic pics;
     private Category category;
     private List<Order> orders;
@@ -103,14 +102,6 @@ public class Product
         this.pics = pics;
     }
 
-    public String getProductPicFile() {
-        return productPicFile;
-    }
-
-    public void setProductPicFile(String productPicFile) {
-        this.productPicFile = productPicFile;
-    }
-
     public List<Order> getOrders()
     {
         return orders;
@@ -138,7 +129,8 @@ public class Product
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Product{" +
                 "productId=" + productId +
                 ", cateId=" + cateId +
@@ -147,7 +139,6 @@ public class Product
                 ", productNum='" + productNum + '\'' +
                 ", productDisc='" + productDisc + '\'' +
                 ", productDate=" + productDate +
-                ", productPicFile='" + productPicFile + '\'' +
                 ", pics=" + pics +
                 ", category=" + category +
                 ", orders=" + orders +

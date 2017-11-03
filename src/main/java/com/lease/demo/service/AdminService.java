@@ -20,5 +20,11 @@ public interface AdminService
 
     boolean addNewUser(User user);
 
-    boolean addCate(String cateName, String cateImage);
+    boolean addCate(String cateName, String pic);
+
+    boolean addProduct(Product product);
+
+    String getMaxProductId();
+
+    boolean addProductPic(String maxProductId, String image);
 }

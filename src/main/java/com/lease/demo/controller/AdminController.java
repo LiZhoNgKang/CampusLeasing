@@ -104,10 +104,52 @@ public class AdminController
         return "result";
     }
 
-    @RequestMapping("/handleProducts")
-    public String handleProducts()
+    @RequestMapping("/toAddProducts")
+    public String handleProducts(Model model)
     {
+        List<Category> categoryList = adminService.getAllCategory();
+        model.addAttribute("cateList",categoryList);
         return "admin/add_product";
+    }
+
+    @RequestMapping("/addProduct")
+    public String addProduct(Product product,@RequestParam MultipartFile productPic, Model model)
+    {
+        String msg;
+        String href;
+        String image = uploadUtil.uploadImage(productPic);
+        boolean addRel = adminService.addProduct(product);
+        if (addRel)
+        {
+            String maxProductId = adminService.getMaxProductId();
+            try
+            {
+                boolean picRel = adminService.addProductPic(maxProductId,image);
+                if (picRel)
+                {
+                    msg = "添加商品成功！";
+                    href = "productSearch";
+                }
+                else
+                {
+                    msg = "添加商品图片失败！";
+                    href = "toAddProducts";
+                }
+            }
+            catch (Exception e)
+            {
+                msg = "添加商品图片失败！" + "\n" + "异常信息为:" + e.getMessage();
+                href = "toAddProducts";
+            }
+        }
+        else
+        {
+            msg = "添加商品失败！请重新添加！";
+            href = "toAddProducts";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
     }
 
     @RequestMapping("/toAddProductCate")
@@ -117,12 +159,14 @@ public class AdminController
     }
 
     @RequestMapping("/addCate")
-    public String addCate(String cateName ,MultipartFile catePic,Model model)
+    public String addCate(@RequestParam String cateName ,
+                          @RequestParam MultipartFile catePic,Model model)
+
     {
         String msg;
         String href;
-        String cateImage = uploadUtil.uploadImage(catePic);
-        boolean rel = adminService.addCate(cateName,cateImage);
+        String pic = uploadUtil.uploadImage(catePic);
+        boolean rel = adminService.addCate(cateName,pic);
         if (rel)
         {
             msg = "添加分类成功！";

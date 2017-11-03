@@ -20,7 +20,7 @@
 
         <h1>添加商品</h1>
 
-        <form enctype="multipart/form-data" method="post">
+        <form th:action="@{addProduct}" enctype="multipart/form-data" method="post">
             <div style="width: 600px;margin-left: 200px">
             <input type="hidden" id="productId" name="productId" value="0"/>
 
@@ -29,19 +29,20 @@
                 <input type="text" class="form-control" id="productName" name="productName" placeholder="商品名称" required>
             </fieldset>
             <fieldset class="form-group">
-                <label for="productCate">商品类型</label>
-                <select class="form-control" id="productCate" name="productCate" required>
-                    <option>自行车</option>
-                    <option>单反</option>
-                    <option>电脑</option>
-                    <option>书籍</option>
-                    <option>男装</option>
+                <label for="cateId">商品类型</label>
+                <select class="form-control" id="cateId" name="cateId" required>
+                    <option th:each="cate:${cateList}"
+                            th:value="${cate.cateId}" th:text="${cate.cateName}">自行车</option>
                 </select>
             </fieldset>
             <fieldset class="form-group">
-                <label for="leasePrice">租赁价格</label>
-                <input type="text" class="form-control" id="leasePrice" name="leasePrice" placeholder="租赁价格" required>
+                <label for="productPrice">租赁价格</label>
+                <input type="text" class="form-control" id="productPrice" name="productPrice" placeholder="租赁价格" required>
             </fieldset>
+                <fieldset class="form-group">
+                    <label for="productNum">商品数量</label>
+                    <input type="text" class="form-control" id="productNum" name="productNum" placeholder="商品数量" value="1" required>
+                </fieldset>
             <fieldset class="form-group">
                 <label for="productDisc">商品描述</label>
                 <textarea class="form-control" id="productDisc" name="productDisc" rows="3"></textarea>
@@ -54,9 +55,9 @@
                        type="date"  placeholder="商品上架日期" />
             </fieldset>
             <fieldset class="form-group">
-                <label for="productPic">商品图片</label>
-                <input type="file" class="form-control" id="productPicFile" name="productPicFile">
-                <input type="hidden" name="productPic"  id="productPic" value="">
+                <label for="productPic1">商品图片</label>
+                <input type="file" class="form-control" id="productPic" name="productPic">
+                <input type="hidden" name="productPic1"  id="productPic1" value="">
             </fieldset>
             <button type="submit" class="btn btn-outline-info">确定</button>
             <button type="reset" class="btn btn-outline-secondary">重置</button>

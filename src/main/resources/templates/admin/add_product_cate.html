@@ -20,7 +20,7 @@
 
         <h1>添加商品</h1>
 
-        <form th:action="@{addCate}" enctype="multipart/form-data">
+        <form th:action="@{addCate}" method="post" enctype="multipart/form-data">
             <div style="width: 600px;margin-left: 200px">
 
                 <fieldset class="form-group">
@@ -30,7 +30,6 @@
                 <fieldset class="form-group">
                     <label for="catePic1">商品分类图片</label>
                     <input type="file" class="form-control" id="catePic" name="catePic" required>
-                    <input type="hidden" name="catePic1"  id="catePic1" value=" ">
                 </fieldset>
                 <button type="submit" class="btn btn-outline-info">确定</button>
                 <button type="reset" class="btn btn-outline-secondary">重置</button>

@@ -108,13 +108,28 @@ public class AdminServiceImpl implements AdminService
     }
 
     @Override
-    public boolean addCate(String cateName, String cateImage)
+    public boolean addCate(String cateName, String pic)
     {
-        return adminMapper.addCate(cateName,cateImage);
+        return adminMapper.addCate(cateName,pic);
     }
 
+    @Override
+    public boolean addProduct(Product product)
+    {
+        return adminMapper.addProduct(product);
+    }
 
+    @Override
+    public String getMaxProductId()
+    {
+        return adminMapper.getMaxProductId();
+    }
 
+    @Override
+    public boolean addProductPic(String maxProductId, String image)
+    {
+        return adminMapper.addProductPic(maxProductId,image);
+    }
 
 
 }
