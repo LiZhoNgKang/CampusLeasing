@@ -131,5 +131,11 @@ public class AdminServiceImpl implements AdminService
         return adminMapper.addProductPic(maxProductId,image);
     }
 
+    @Override
+    public User findUserByUserId(String userId)
+    {
+        return adminMapper.findUserByUserId(userId);
+    }
+
 
 }

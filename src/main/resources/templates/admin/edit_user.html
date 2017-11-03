@@ -20,34 +20,41 @@
 
         <h1>修改用户</h1>
 
-        <form th:action="@{updateUser}" enctype="multipart/form-data" method="post">
-            <div style="width: 400px;margin-left: 240px">
+        <form th:action="@{updateUser}" enctype="multipart/form-data" method="post" >
+            <div style="width: 400px;margin-left: 240px;float: left">
                 <input type="hidden" id="userId" name="userId" value="0"/>
 
                 <fieldset class="form-group">
                     <label for="userName">用户名</label>
-                    <input type="text" class="form-control" id="userName" name="userName" th:value="111" disabled>
+                    <input type="text" class="form-control" id="userName" name="userName" th:value="${user.userName}" disabled>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="password">密码</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" th:value="${user.password}" required>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="password">确认密码</label>
                     <input type="password" class="form-control" id="password1" name="password1" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="sex">性别</label>
+                    <label for="userSex">性别</label>
                     <div class="radio-inline">
-                        <input type="radio" id="sex1" name="sex" value="0" checked> 男
-                        <input type="radio" id="sex2" name="sex" value="1"> 女
+                        <input type="radio" id="sex1" name="userSex" value="0" th:if="${user.userSex == 0}" > 男
+                        <input type="radio" id="sex2" name="userSex" value="1" th:if="${user.userSex == 1}" > 女
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
+                    <label for="address">联系地址</label>
+                    <input type="text" class="form-control" id="address" name="address" th:value="${user.address}" required>
+                </fieldset>
+                <fieldset class="form-group">
                     <label for="mobile">手机号码</label>
-                    <input type="tel" class="form-control" id="mobile" name="mobile" required>
+                    <input type="tel" class="form-control" id="mobile" name="mobile" th:value="${user.mobile}" required>
                 </fieldset>
                 <button type="submit" class="btn btn-outline-info">确定</button>
+            </div>
+            <div style="float: left;margin-top: 19.6%">
+                <span id="prompt">111</span>
             </div>
         </form>
 

@@ -27,4 +27,6 @@ public interface AdminService
     String getMaxProductId();
 
     boolean addProductPic(String maxProductId, String image);
+
+    User findUserByUserId(String userId);
 }

@@ -197,8 +197,10 @@ public class AdminController
     }
 
     @RequestMapping("/editUser")
-    public String editUser()
+    public String editUser(@RequestParam String userId,Model model)
     {
+        User user = adminService.findUserByUserId(userId);
+        model.addAttribute("user",user);
         return "admin/edit_user";
     }
 

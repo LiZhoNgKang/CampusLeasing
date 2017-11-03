@@ -89,4 +89,7 @@ public interface AdminMapper
 
     @Insert("insert into pic(product_id,pic_url) values(#{maxProductId},#{image})")
     boolean addProductPic(@Param("maxProductId") String maxProductId, @Param("image") String image);
+
+    @Select("select * from user where user_id =#{userId}")
+    User findUserByUserId(String userId);
 }
