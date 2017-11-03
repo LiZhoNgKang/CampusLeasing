@@ -3,9 +3,8 @@
 #Top{
 	width: 1366px;
 	height: 64px;
+	margin-top: -18px;
 	background-color: #2e2e2e;
-	
-	
 }
 #Top span{
 	font-size: 28px;
@@ -40,21 +39,24 @@
 #nav{
 	width: 1366px;
 	height: 354px;
-	
+
 }
 #shoppingSort{
 	width: 1366px;
 	height: 350px;
 	background-color: #FFFFFF;
+
 }
 #ranking{
 	width: 1366px;
 	height: 557px;
+
 }
 #Footer{
 	width: 1366px;
 	height: 100px;
 	background-color: #0d0c0d;
+
 }
 
 #nav{
@@ -107,7 +109,8 @@
 #shopping_sort_title span{
 	font-size: 36px;
 	font-weight:bolder;
-	margin: 100px 0px 0px 100px;
+	margin: 5% 0 0 5%;
+
 	
 }
 #shopping_sort_title a{
@@ -115,12 +118,14 @@
 	margin: 10px;
 }
 #shopping_sort_value{
-	padding: 50px;
+	padding: 30px;
+	height: 85%;
+
 }
 #shopping_sort_value .card{
-	margin: 0px 30px;
+	margin: 0 2.4%;
 	text-align: center;
-	
+	border: 1px dashed black;
 }
 #shopping_sort_value .card-img-top{
 	width: 10rem;
@@ -416,7 +421,6 @@
 /*添加新商品*/
 #addGoods_body{
 	width: 1366px;
-	height: 800px;
 	margin: -8px;
 	background-color:#adadac;
 }

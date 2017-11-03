@@ -23,4 +23,6 @@ public interface ProductService {
 
 
     boolean addPic(String productId, String image);
+
+    List<Product> getProductListByProductName(String productName);
 }

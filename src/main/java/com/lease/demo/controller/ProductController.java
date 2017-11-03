@@ -6,6 +6,7 @@ import com.lease.demo.dao.Product;
 import com.lease.demo.service.CateService;
 import com.lease.demo.service.ProductService;
 import com.lease.demo.util.UploadUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import java.io.File;
 import java.io.IOException;
@@ -53,9 +55,17 @@ public class ProductController {
 
     @RequestMapping("/getProductDetailsByProductId")
     public String productDetails(@RequestParam(required = true) String productId, Model model) {
+
         List<Product> productDetailList = productService.getProductDetailsByProductId(productId);
         model.addAttribute("productDetailList", productDetailList);
         return "/product_details";
+    }
+
+    @RequestMapping("/searchProduct")
+    public String getProductListByProductName( String productName, Model model){
+        List<Product> searchProductList=productService.getProductListByProductName(productName);
+        model.addAttribute("searchProductList",searchProductList);
+        return "redirect:productByCateId?cateId="+  searchProductList.get(10).getCateId();
     }
 
     @RequestMapping("productByCateId")

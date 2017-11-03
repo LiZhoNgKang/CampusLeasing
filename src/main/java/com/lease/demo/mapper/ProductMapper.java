@@ -57,4 +57,7 @@ public interface ProductMapper {
 
     @Insert("INSERT INTO pic(product_id,pic_url) VALUES(#{productId},#{image})")
     boolean addPic(@Param("productId") String productId,@Param("image") String image);
+
+    @Select("SELECT * from product WHERE product_name LIKE #{searchResult}")
+    List<Product> getProductListByProductName(String searchResult);
 }
