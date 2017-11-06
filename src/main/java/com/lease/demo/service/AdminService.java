@@ -29,4 +29,10 @@ public interface AdminService
     boolean addProductPic(String maxProductId, String image);
 
     User findUserByUserId(String userId);
+
+    boolean updateUser(User user);
+
+    Category getCateByCateId(String cateId);
+
+    boolean updateCate(String cateId, String cateName, String img);
 }

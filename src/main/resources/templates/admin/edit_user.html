@@ -9,6 +9,24 @@
 
     <!-- Custom styles for this template -->
     <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+
+    <script th:src="@{css/jquery-1.11.1.min.js}"></script>
+
+    <script>
+        function validate() {
+            var pwd1 = document.getElementById("password").value;
+            var pwd2 = document.getElementById("password1").value;
+
+            if (pwd1 == pwd2)
+            {
+                document.getElementById("prompt").innerHTML="<font color='green'>两次密码相同</font>";
+            }
+            else
+            {
+                document.getElementById("prompt").innerHTML="<font color='red'>两次密码不相同！</font>";
+            }
+        }
+    </script>
 </head>
 <body>
 <div th:replace="admin/header_nav :: header_nav"></div>
@@ -22,7 +40,7 @@
 
         <form th:action="@{updateUser}" enctype="multipart/form-data" method="post" >
             <div style="width: 400px;margin-left: 240px;float: left">
-                <input type="hidden" id="userId" name="userId" value="0"/>
+                <input type="hidden" id="userId" name="userId" th:value="${user.userId}"/>
 
                 <fieldset class="form-group">
                     <label for="userName">用户名</label>
@@ -34,13 +52,13 @@
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="password">确认密码</label>
-                    <input type="password" class="form-control" id="password1" name="password1" required>
+                    <input type="password" class="form-control" id="password1" name="password1" required onblur="validate()">
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="userSex">性别</label>
                     <div class="radio-inline">
-                        <input type="radio" id="sex1" name="userSex" value="0" th:if="${user.userSex == 0}" > 男
-                        <input type="radio" id="sex2" name="userSex" value="1" th:if="${user.userSex == 1}" > 女
+                        <input type="radio" id="sex1" name="userSex" value="0"  th:checked="${user.userSex==0}">男
+                        <input type="radio" id="sex2" name="userSex" value="1"  th:checked="${user.userSex==1}">女
                     </div>
                 </fieldset>
                 <fieldset class="form-group">
@@ -54,7 +72,7 @@
                 <button type="submit" class="btn btn-outline-info">确定</button>
             </div>
             <div style="float: left;margin-top: 19.6%">
-                <span id="prompt">111</span>
+                <span id="prompt"></span>
             </div>
         </form>
 

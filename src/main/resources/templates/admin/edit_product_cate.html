@@ -20,18 +20,18 @@
 
         <h1>修改商品分类</h1>
 
-        <form enctype="multipart/form-data" method="post">
+        <form enctype="multipart/form-data" method="post" th:action="@{updateCate}">
             <div style="width: 600px;margin-left: 200px">
-                <input type="hidden" id="cateId" name="cateId" value="0"/>
-                <img th:src="@{/image/basketball.jpg}" th:width="128" th:height="128">
+                <input type="hidden" id="cateId" name="cateId" th:value="${cate.cateId}"/>
+                <img th:src="${cate.catePic}" th:width="128" th:height="128">
                 <fieldset class="form-group">
                     <label for="cateName">商品分类名称</label>
-                    <input type="text" class="form-control" id="cateName" name="cateName" placeholder="商品分类名称" required>
+                    <input type="text" class="form-control" id="cateName" name="cateName" th:value="${cate.cateName}" required>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="catePic">商品分类图片</label>
-                    <input type="file" class="form-control" id="catePicFile" name="catePicFile" required>
-                    <input type="hidden" name="catePic"  id="catePic" value=" ">
+                    <label for="catePic1">商品分类图片</label>
+                    <input type="file" class="form-control" id="catePic" name="catePic" required>
+                    <input type="hidden" name="catePic1"  id="catePic1" value=" ">
                 </fieldset>
                 <button type="submit" class="btn btn-outline-info">确定</button>
                 <button type="reset" class="btn btn-outline-secondary">重置</button>

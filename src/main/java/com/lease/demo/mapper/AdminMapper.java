@@ -92,4 +92,15 @@ public interface AdminMapper
 
     @Select("select * from user where user_id =#{userId}")
     User findUserByUserId(String userId);
+
+    @Update("update user set password=#{password},user_sex=#{userSex}, " +
+            "address=#{address} ,mobile=#{mobile} where user_id=#{userId}")
+    boolean updateUser(User user);
+
+    @Select("select * from category where cate_id =#{cateId}")
+    Category getCateByCateId(String cateId);
+
+
+    @Update("update category set cate_pic=#{img},cate_name=#{cateName} where cate_id=#{cateId}")
+    boolean updateCate(@Param("cateId") String cateId,@Param("cateName") String cateName,@Param("img") String img);
 }

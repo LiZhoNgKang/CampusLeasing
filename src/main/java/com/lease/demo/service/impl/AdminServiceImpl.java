@@ -137,5 +137,24 @@ public class AdminServiceImpl implements AdminService
         return adminMapper.findUserByUserId(userId);
     }
 
+    @Override
+    public boolean updateUser(User user)
+    {
+        return adminMapper.updateUser(user);
+    }
+
+    @Override
+    public Category getCateByCateId(String cateId)
+    {
+        return adminMapper.getCateByCateId(cateId);
+    }
+
+    @Override
+    public boolean updateCate(String cateId, String cateName, String img)
+    {
+        return adminMapper.updateCate(cateId,cateName,img);
+    }
+
+
 
 }

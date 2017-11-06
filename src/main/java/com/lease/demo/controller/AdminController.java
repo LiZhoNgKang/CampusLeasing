@@ -4,6 +4,7 @@ package com.lease.demo.controller;
 import com.lease.demo.dao.*;
 import com.lease.demo.service.AdminService;
 import com.lease.demo.util.UploadUtil;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -191,9 +192,34 @@ public class AdminController
     }
 
     @RequestMapping("/editProductCate")
-    public String editProductCate()
+    public String editProductCate(@RequestParam String cateId,Model model)
     {
+        Category cate = adminService.getCateByCateId(cateId);
+        model.addAttribute("cate",cate);
         return "admin/edit_product_cate";
+    }
+
+    @RequestMapping("/updateCate")
+    public String updateCate(@RequestParam String cateId ,@RequestParam MultipartFile catePic,
+                             @RequestParam String cateName, Model model)
+    {
+        String msg;
+        String href;
+        String img = uploadUtil.uploadImage(catePic);
+        boolean cateRel = adminService.updateCate(cateId,cateName,img);
+        if (cateRel)
+        {
+            msg = "修改商品分类成功。";
+            href = "category";
+        }
+        else
+        {
+            msg = "修改商品分类失败！";
+            href = "editProductCate?cateId" + cateId;
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
     }
 
     @RequestMapping("/editUser")
@@ -202,6 +228,28 @@ public class AdminController
         User user = adminService.findUserByUserId(userId);
         model.addAttribute("user",user);
         return "admin/edit_user";
+    }
+
+    @RequestMapping("/updateUser")
+    public String updateUser(User user,Model model)
+    {
+        System.out.println(user);
+        String msg;
+        String href;
+        boolean upRel = adminService.updateUser(user);
+        if (upRel)
+        {
+           msg = "修改用户信息成功。";
+           href = "userSearch";
+        }
+        else
+        {
+            msg = "修改用户信息失败！";
+            href = "editUser?userId="+ user.getUserId();
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
     }
 
 }

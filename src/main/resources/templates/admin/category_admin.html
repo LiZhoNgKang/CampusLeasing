@@ -41,8 +41,8 @@
                     <img th:src="${cate.catePic}" th:width="32" th:height="32">
                 </td>
                 <td>
-                    <a th:href="@{editProductCate}">修改</a>
-                    <a th:href="@{deleteProductCate}">删除</a>
+                    <a th:href="'editProductCate?cateId='+${cate.cateId}">修改</a>
+                    <a th:href="'deleteProductCate?cateId='+${cate.cateId}">删除</a>
                 </td>
 
             </tr>

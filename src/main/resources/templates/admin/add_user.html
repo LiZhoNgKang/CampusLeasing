@@ -18,12 +18,11 @@
 
             if (pwd1 == pwd2)
             {
+                document.getElementById("prompt").innerHTML="<font color='green'>两次密码相同</font>";
             }
             else
             {
-                alert("两次输入的密码不正确，请重新输入");
-                document.getElementById("password").value = "";
-                document.getElementById("password1").value = "";
+                document.getElementById("prompt").innerHTML="<font color='red'>两次密码不相同！</font>";
             }
         }
     </script>
@@ -39,7 +38,7 @@
         <h1>添加用户</h1>
 
         <form th:action="@{addUser}">
-            <div style="width: 400px;margin-left: 240px">
+            <div style="width: 400px;margin-left: 240px;float: left">
                 <input type="hidden" id="userId" name="userId" value="1"/>
 
                 <fieldset class="form-group">
@@ -67,6 +66,9 @@
                 </fieldset>
                 <button type="submit" class="btn btn-outline-info">确定</button>
                 <button type="reset" class="btn btn-outline-secondary">重置</button>
+            </div>
+            <div style="float: left;margin-top: 19.6%">
+                <span id="prompt"></span>
             </div>
         </form>
 
