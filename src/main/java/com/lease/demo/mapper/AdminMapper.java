@@ -103,4 +103,22 @@ public interface AdminMapper
 
     @Update("update category set cate_pic=#{img},cate_name=#{cateName} where cate_id=#{cateId}")
     boolean updateCate(@Param("cateId") String cateId,@Param("cateName") String cateName,@Param("img") String img);
+
+    @Delete("DELETE FROM category WHERE cate_id=#{cateId}")
+    boolean delCateByCateId(String cateId);
+
+    @Delete("DELETE FROM product WHERE cate_id=#{cateId}")
+    boolean delProductByCateId(String cateId);
+
+    @Select("select * from `order` where user_id=#{userId}")
+    List<Order> findOrderByUserId(String userId);
+
+    @Delete("delete from user where user_id=#{userId}")
+    boolean delUserByUserId(String userId);
+
+    @Select("select product_id from product where cate_id=#{cateId}")
+    List<Product> getProductIdByCateId(String cateId);
+
+
+    boolean delPicByProductId(List<Product> productsId);
 }

@@ -155,6 +155,34 @@ public class AdminServiceImpl implements AdminService
         return adminMapper.updateCate(cateId,cateName,img);
     }
 
+    @Override
+    public boolean delCateByCateId(String cateId)
+    {
+        List<Product> productsId = adminMapper.getProductIdByCateId(cateId);
+
+
+        boolean picRel = adminMapper.delPicByProductId(productsId);
+        boolean rel = adminMapper.delProductByCateId(cateId);
+        if (rel)
+        {
+            return adminMapper.delCateByCateId(cateId);
+        }
+        else
+            return false;
+    }
+
+    @Override
+    public List<Order> findOrderByUserId(String userId)
+    {
+        return adminMapper.findOrderByUserId(userId);
+    }
+
+    @Override
+    public boolean delUserByUserId(String userId)
+    {
+
+        return adminMapper.delUserByUserId(userId);
+    }
 
 
 }

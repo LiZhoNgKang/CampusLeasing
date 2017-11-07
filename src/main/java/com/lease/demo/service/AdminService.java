@@ -35,4 +35,10 @@ public interface AdminService
     Category getCateByCateId(String cateId);
 
     boolean updateCate(String cateId, String cateName, String img);
+
+    boolean delCateByCateId(String cateId);
+
+    List<Order> findOrderByUserId(String userId);
+
+    boolean delUserByUserId(String userId);
 }
