@@ -158,17 +158,27 @@ public class AdminServiceImpl implements AdminService
     @Override
     public boolean delCateByCateId(String cateId)
     {
-        List<Product> productsId = adminMapper.getProductIdByCateId(cateId);
+//        得到要删除的商品图片的商品Id
+        List<String> productId = adminMapper.getProductIdByCateId(cateId);
+        System.out.println(productId + "--------------");
 
-
-        boolean picRel = adminMapper.delPicByProductId(productsId);
-        boolean rel = adminMapper.delProductByCateId(cateId);
-        if (rel)
+        if (productId.size() > 0)
         {
-            return adminMapper.delCateByCateId(cateId);
+//            批量删除...
+            for (String o:productId)
+            {
+                adminMapper.delPicByProductId(o);
+            }
+            adminMapper.delProductByCateId(cateId);
+            adminMapper.delCateByCateId(cateId);
         }
         else
-            return false;
+        {
+            adminMapper.delProductByCateId(cateId);
+            adminMapper.delCateByCateId(cateId);
+        }
+        return true;
+
     }
 
     @Override

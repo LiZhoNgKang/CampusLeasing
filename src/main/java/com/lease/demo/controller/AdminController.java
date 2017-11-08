@@ -36,13 +36,12 @@ public class AdminController
     }
 
     @RequestMapping("/productSearch")
-    public String product(@RequestParam(required = false) String cateId,
-                          @RequestParam(required = false) String productName, Model model)
+    public String product(String cateId,String productName, Model model)
     {
         System.out.println(cateId);
         List<Category> categoryList = adminService.getAllCategory();
-//        List<Product> productList = adminService.searchProduct(cateId,productName);
-//        model.addAttribute("productList",productList);
+        List<Product> productList = adminService.searchProduct(cateId,productName);
+        model.addAttribute("productList",productList);
         model.addAttribute("cateList", categoryList);
         return "admin/product_admin";
     }
@@ -223,13 +222,15 @@ public class AdminController
         String href;
 
         boolean delRel = adminService.delCateByCateId(cateId);
-        if (delRel){
-            msg = "";
+        if (delRel)
+        {
+            msg = "删除商品分类成功";
             href = "category";
         }
         else
         {
-            msg = "";
+            msg = "删除商品分类失败";
+            href = "category";
         }
 
         model.addAttribute("msg", msg);

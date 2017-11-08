@@ -53,17 +53,17 @@ public interface AdminMapper
     @Select("SELECT pd.product_name,pd.product_disc,pd.product_num,pd.product_price,p.pic_url,od.odetail_num \n" +
             "FROM product pd ,pic p,orderdetail od \n" +
             "WHERE pd.product_id=p.product_id AND od.product_id = pd.product_id\n" +
-            "AND pd.product_name LIKE #{productName} AND pd.cate_id like #{productCate}\n")
+            "AND pd.product_name LIKE #{productName} AND pd.cate_id like #{cateId}\n")
     @Results({
             @Result(id = true,column = "product_id",property = "productId"),
             @Result(column = "product_name",property = "productName"),
             @Result(column = "product_disc",property = "productDisc"),
             @Result(column = "product_num",property = "productNum"),
             @Result(column = "product_price",property = "productPrice"),
-            @Result(column = "product_id",property = "productId",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getPicByProductId")),
-            @Result(column = "product_id",property = "orderDetails",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getOrderDetailByProductId"))
+            @Result(column = "pic_id",property = "pics",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getPicByProductId")),
+            @Result(column = "odetail_id",property = "orderDetails",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getOrderDetailByProductId"))
     })
-    List<Product> searchProduct(@Param("productCate") String productCate,
+    List<Product> searchProduct(@Param("cateId") String cateId,
                                 @Param("productName") String productName);
 
 
@@ -117,8 +117,8 @@ public interface AdminMapper
     boolean delUserByUserId(String userId);
 
     @Select("select product_id from product where cate_id=#{cateId}")
-    List<Product> getProductIdByCateId(String cateId);
+    List<String> getProductIdByCateId(String cateId);
 
-
-    boolean delPicByProductId(List<Product> productsId);
+    @Delete("delete from pic where product_id =#{o}")
+    boolean delPicByProductId(String o);
 }

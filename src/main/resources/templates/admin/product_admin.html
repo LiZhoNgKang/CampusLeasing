@@ -25,7 +25,7 @@
             <div class="form-group form-group-sm">
                 <label for="cateId">商品分类</label>
                 <select class="form-control form-control-sm" id="cateId" name="cateId">
-                    <option th:value="0">--所有类别--</option>
+                    <option value="0">--所有类别--</option>
                     <option th:each="cate:${cateList}" th:value="${cate.cateId}" th:text="${cate.cateName}" >电脑</option>
                 </select>
             </div>
