@@ -22,16 +22,19 @@ public interface AdminMapper
 
 
 
-    @Select("SELECT o.order_code,u.user_name,os.ostatus_name,o.order_date \n" +
-            "from `order` o ,`user` u, orderstatus os WHERE\n" +
-            "o.user_id = u.user_id AND o.ostatus_id = os.ostatus_id\n" +
-            "AND o.ostatus_id LIKE #{oStatusId} AND o.order_code LIKE #{orderCode}\n" +
+    @Select("<script>SELECT o.order_code,u.user_name,u.user_id,os.ostatus_name,os.ostatus_id,o.order_date \n" +
+            "from `order` o ,`user` u, orderstatus os WHERE \n" +
+            "o.user_id = u.user_id AND o.ostatus_id = os.ostatus_id \n" +
+            "AND o.order_code LIKE #{orderCode} \n" +
             "AND u.user_name like #{userName} AND \n" +
-            "o.order_date BETWEEN #{startDate} and #{endDate} ")
+            "o.order_date BETWEEN #{startDate} and #{endDate} \n" +
+            "<if test=\"oStatusId != 0\">\n" +
+            "    AND o.ostatus_id =#{oStatusId}\n" +
+            "  </if></script> ")
     @Results({
             @Result(id = true,column = "order_id",property = "orderId"),
             @Result(column = "order_code",property = "orderCode"),
-            @Result(column = "orderDate",property = "orderDate"),
+            @Result(column = "order_date",property = "orderDate"),
             @Result(column = "user_id",property = "user",one = @One(select = "com.lease.demo.mapper.AdminMapper.getUserById")),
             @Result(column = "ostatus_id",property = "orderStatuses",one = @One(select = "com.lease.demo.mapper.AdminMapper.getOrderStatusByOrderStatusId"))
     })
@@ -50,10 +53,17 @@ public interface AdminMapper
 
 
 
-    @Select("SELECT pd.product_name,pd.product_disc,pd.product_num,pd.product_price,p.pic_url,od.odetail_num \n" +
-            "FROM product pd ,pic p,orderdetail od \n" +
-            "WHERE pd.product_id=p.product_id AND od.product_id = pd.product_id\n" +
-            "AND pd.product_name LIKE #{productName} AND pd.cate_id like #{cateId}\n")
+//    动态SQL需要加个<script></script>
+    @Select("<script>select pt.product_id,pt.product_name,pt.product_disc,pt.product_price,\n" +
+            "pc.pic_id,pc.pic_url,o.order_id,od.odetail_id,od.odetail_num \n" +
+            "from product pt,pic pc,`order` o,orderdetail od \n" +
+            "where pt.product_id=pc.product_id and \n" +
+            "pt.product_id=od.product_id and \n" +
+            "o.order_id=od.order_id \n" +
+            "AND pt.product_name like #{productName} \n" +
+            "<if test=\"cateId != 0\">\n" +
+            "    AND pt.cate_id =#{cateId}\n" +
+            "  </if></script>")
     @Results({
             @Result(id = true,column = "product_id",property = "productId"),
             @Result(column = "product_name",property = "productName"),
@@ -63,14 +73,22 @@ public interface AdminMapper
             @Result(column = "pic_id",property = "pics",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getPicByProductId")),
             @Result(column = "odetail_id",property = "orderDetails",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getOrderDetailByProductId"))
     })
-    List<Product> searchProduct(@Param("cateId") String cateId,
-                                @Param("productName") String productName);
+//    搜索商品，显示搜索的商品
+    List<Product> searchProduct(@Param("cateId") String cateId,@Param("productName") String productName);
 
 
-    @Select("select pic_url from pic where product_id=#{productId}")
-    Pic getPicByProductId(String productId);
+    @Select("select pic_id,pic_url from pic where product_id=#{productId}")
+    @Results({
+            @Result(id = true,column = "pic_id",property = "picId"),
+            @Result(column = "pic_url",property = "picUrl")
+    })
+    List<Pic> getPicByProductId(String productId);
 
-    @Select("select odetail_num from orderdetail where product_id=#{productId}")
+    @Select("select odetail_id,odetail_num from orderdetail where product_id=#{productId}")
+    @Results({
+            @Result(id=true,column="odetail_id",property="odetailId"),
+            @Result(column="odetail_num",property="odetailNum"),
+    })
     List<OrderDetail> getOrderDetailByProductId(String productId);
 
     @Insert("insert into user(user_name,password,user_sex,mobile,rank) " +
@@ -121,4 +139,30 @@ public interface AdminMapper
 
     @Delete("delete from pic where product_id =#{o}")
     boolean delPicByProductId(String o);
+
+    @Select("SELECT\n" +
+            "\tpt.product_name,pt.product_id,\n" +
+            "\tc.cate_name,c.cate_id,\n" +
+            "\tpt.product_price,\n" +
+            "\tpt.product_disc,\n" +
+            "\tpt.product_date\n" +
+            "FROM\n" +
+            "\tproduct pt,\n" +
+            "\tpic p,\n" +
+            "\tcategory c\n" +
+            "WHERE\n" +
+            "\tpt.product_id = p.product_id\n" +
+            "AND pt.cate_id = c.cate_id\n" +
+            "AND pt.product_id =#{productId}")
+    @Results({
+            @Result(id = true,column = "product_id",property = "productId"),
+            @Result(column = "product_name",property = "productName"),
+            @Result(column = "product_disc",property = "productDisc"),
+            @Result(column = "product_date",property = "productDate"),
+            @Result(column = "product_price",property = "productPrice"),
+            @Result(column = "pic_id",property = "pics",many = @Many(select = "com.lease.demo.mapper.AdminMapper.getPicByProductId")),
+            @Result(column = "cate_id",property = "category",one = @One(select = "com.lease.demo.mapper.AdminMapper.getCateByCateId"))
+    })
+    Product findProductByProduct(String productId);
+
 }

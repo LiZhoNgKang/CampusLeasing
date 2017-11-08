@@ -2,9 +2,8 @@ package com.lease.demo.dao;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 public class Product

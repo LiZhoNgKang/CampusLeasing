@@ -22,35 +22,32 @@
 
         <form th:action="@{updateProduct}" enctype="multipart/form-data" method="post">
             <div style="width: 600px;margin-left: 200px">
-                <input type="hidden" id="productId" name="productId" value="0"/>
+                <input type="hidden" id="productId" name="productId" th:value="${product.productId}"/>
 
                 <fieldset class="form-group">
                     <label for="productName">商品名称</label>
-                    <input type="text" class="form-control" id="productName" name="productName" placeholder="商品名称" required>
+                    <input type="text" class="form-control" id="productName" name="productName" th:value="${product.productName}" required>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="productCate">商品类型</label>
                     <select class="form-control" id="productCate" name="productCate" required>
-                        <option>自行车</option>
-                        <option>单反</option>
-                        <option>电脑</option>
-                        <option>书籍</option>
-                        <option>男装</option>
+                        <option th:each="cate:${cateList}" th:value="${cate.cateId}"
+                                th:text="${cate.cateName}" th:selected="#{${cate.cateId}==(${product.cateId})}">自行车</option>
                     </select>
                 </fieldset>
                 <fieldset class="form-group">
-                    <label for="leasePrice">租赁价格</label>
-                    <input type="text" class="form-control" id="leasePrice" name="leasePrice" placeholder="租赁价格" required>
+                    <label for="productPrice">租赁价格</label>
+                    <input type="text" class="form-control" id="productPrice" name="productPrice" th:value="${product.productPrice}" required>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="productDisc">商品描述</label>
-                    <textarea class="form-control" id="productDisc" name="productDisc" rows="3"></textarea>
+                    <textarea class="form-control" id="productDisc" name="productDisc" rows="3" th:text="${product.productDisc}"></textarea>
                 </fieldset>
                 <fieldset class="form-group">
                     <label for="productDate"> 商品入货日期（格式yyyy-mm-dd，如2017-01-01）</label>
 
                     <input class="form-control" name="productDate" id="productDate"
-                           value="2017-10-25"
+                           th:value="${product.productDate}"
                            type="date"  placeholder="商品上架日期" />
                 </fieldset>
                 <fieldset class="form-group">

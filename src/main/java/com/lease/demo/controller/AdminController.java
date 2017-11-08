@@ -36,15 +36,26 @@ public class AdminController
     }
 
     @RequestMapping("/productSearch")
-    public String product(String cateId,String productName, Model model)
+    public String product(@RequestParam(defaultValue = "0") String cateId,
+                          @RequestParam(defaultValue = "",required = false) String productName ,Model model)
     {
-        System.out.println(cateId);
         List<Category> categoryList = adminService.getAllCategory();
         List<Product> productList = adminService.searchProduct(cateId,productName);
         model.addAttribute("productList",productList);
         model.addAttribute("cateList", categoryList);
         return "admin/product_admin";
     }
+
+    @RequestMapping("/editProduct")
+    public String editProduct(String productId,Model model)
+    {
+        List<Category> categoryList = adminService.getAllCategory();
+        Product product = adminService.findProductByProduct(productId);
+        model.addAttribute("cateList",categoryList);
+        model.addAttribute("product",product);
+        return "admin/edit_product";
+    }
+
 
     @RequestMapping("/category")
     public String category(Model model)
@@ -65,15 +76,15 @@ public class AdminController
     }
 
     @RequestMapping("/orderSearch")
-    public String order(@RequestParam(value = "oStatusId", required = false) String oStatusId, @RequestParam(required = false) String userName,
-                        @RequestParam(required = false) String orderCode, @RequestParam(required = false) String startDate,
-                        @RequestParam(required = false) String endDate, Model model)
+    public String order(@RequestParam(defaultValue = "0") String oStatusId, @RequestParam(required = false) String userName,
+                        @RequestParam(required = false) String orderCode, @RequestParam(defaultValue = "2017-10-01") String startDate,
+                        @RequestParam(defaultValue = "2018-10-01") String endDate, Model model)
     {
         List<OrderStatus> orderStatuses = adminService.getAllOrderStatus();
-//        List<Order> orderList = adminService.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
-//        model.addAttribute("orderList",orderList);
+        List<Order> orderList = adminService.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
+        model.addAttribute("orderList",orderList);
         model.addAttribute("orderStatuses", orderStatuses);
-//        System.out.println(orderList);
+        System.out.println(orderList);
         return "admin/order_admin";
     }
 
@@ -176,13 +187,6 @@ public class AdminController
         model.addAttribute("href", href);
         return "result";
 
-    }
-
-
-    @RequestMapping("/editProduct")
-    public String editProduct()
-    {
-        return "admin/edit_product";
     }
 
     @RequestMapping("/editProductCate")

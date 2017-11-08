@@ -16,8 +16,6 @@ public interface AdminService
 
     List<Category> getAllCategory();
 
-    List<Product> searchProduct(String cateId, String productName);
-
     boolean addNewUser(User user);
 
     boolean addCate(String cateName, String pic);
@@ -41,4 +39,8 @@ public interface AdminService
     List<Order> findOrderByUserId(String userId);
 
     boolean delUserByUserId(String userId);
+
+    List<Product> searchProduct(String cateId, String productName);
+
+    Product findProductByProduct(String productId);
 }

@@ -31,7 +31,7 @@
             </div>
             <div class="form-group form-group-sm">
                 <label for="productName">商品名称</label>
-                <input type="text" class="form-control form-control-sm" id="productName" name="productName" placeholder="商品名称">
+                <input type="text" class="form-control form-control-sm" id="productName" name="productName" placeholder="商品名称" th:value="${#httpServletRequest.getParameter('productName')}">
             </div>
             <button type="submit" class="btn btn-outline-info btn-sm">搜索</button>
         </div>
@@ -55,15 +55,15 @@
             <tr th:each="product :${productList}">
                 <th scope="row" th:text="${productStat.count}">1</th>
                 <td>
-                    <img th:src="${product.pic.picUrl}" th:width="30" th:height="30">
+                    <img th:src="${product.pics.picUrl}" th:width="30" th:height="30">
                 </td>
                 <td th:text="${product.productName}">篮球</td>
                 <td th:text="${product.productPrice}">128</td>
                 <td th:text="${product.productDisc}">耐打</td>
                 <td th:text="${product.orderDetails.odetailNum}">120</td>
                 <td>
-                    <a th:href="@{editProduct}">修改</a>
-                    <a th:href="@{deleteProduct}">删除</a>
+                    <a th:href="'editProduct?productId='+${product.productId}">修改</a>
+                    <a th:href="'delProduct?productId='+${product.productId}">删除</a>
                 </td>
             </tr>
             </tbody>

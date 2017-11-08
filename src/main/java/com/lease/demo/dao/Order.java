@@ -1,6 +1,8 @@
 package com.lease.demo.dao;
 
-import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.sql.Date;
 import java.util.List;
 
 public class Order
@@ -8,6 +10,7 @@ public class Order
     private int orderId;
     private int userId;
     private String orderCode;
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date orderDate;
     private String orderAddr;
     private Integer oStatusId;

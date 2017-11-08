@@ -41,15 +41,6 @@ public class AdminServiceImpl implements AdminService
     @Override
     public List<Order> searchOrder(String  oStatusId, String orderCode, String userName, String startDate, String endDate)
     {
-        if (oStatusId.equals("0"))
-        {
-            oStatusId = "%%";
-        }
-        else
-        {
-            oStatusId = oStatusId;
-        }
-
         if (orderCode == null)
         {
             orderCode = "%%";
@@ -67,7 +58,7 @@ public class AdminServiceImpl implements AdminService
         {
             userName = "%" + userName + "%";
         }
-        System.out.println(oStatusId+"222"+orderCode);
+        System.out.println(adminMapper.searchOrder(oStatusId,orderCode,userName,startDate,endDate).toString());
         return adminMapper.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
     }
 
@@ -75,30 +66,6 @@ public class AdminServiceImpl implements AdminService
     public List<Category> getAllCategory()
     {
         return adminMapper.getAllCategory();
-    }
-
-    @Override
-    public List<Product> searchProduct(String cateId, String productName)
-    {
-        if (cateId.equals("0"))
-        {
-            cateId = "%%";
-        }
-        else
-        {
-            cateId = cateId;
-        }
-
-
-        if (productName == null)
-        {
-            productName = "%%";
-        }
-        else
-        {
-            productName = "%" + productName + "%";
-        }
-        return adminMapper.searchProduct(cateId,productName);
     }
 
     @Override
@@ -160,7 +127,6 @@ public class AdminServiceImpl implements AdminService
     {
 //        得到要删除的商品图片的商品Id
         List<String> productId = adminMapper.getProductIdByCateId(cateId);
-        System.out.println(productId + "--------------");
 
         if (productId.size() > 0)
         {
@@ -192,6 +158,26 @@ public class AdminServiceImpl implements AdminService
     {
 
         return adminMapper.delUserByUserId(userId);
+    }
+
+    @Override
+    public List<Product> searchProduct(String cateId,String productName)
+    {
+        if (productName == null)
+        {
+            productName = "%%";
+        }
+        else
+        {
+            productName = "%" + productName + "%";
+        }
+        return adminMapper.searchProduct(cateId,productName);
+    }
+
+    @Override
+    public Product findProductByProduct(String productId)
+    {
+        return adminMapper.findProductByProduct(productId);
     }
 
 

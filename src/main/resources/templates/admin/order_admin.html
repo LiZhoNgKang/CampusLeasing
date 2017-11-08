@@ -60,7 +60,7 @@
             </thead>
             <tbody>
             <tr th:each="order:${orderList}">
-                <th scope="row" th:text="${orderStatu.count}"></th>
+                <th scope="row" th:text="${orderStat.count}"></th>
                 <td th:text="${order.orderCode}">201710251154512</td>
                 <td th:text="${order.user.userName}">Mark</td>
                 <td th:text="${order.orderStatuses.oStatusName}">已付款</td>
