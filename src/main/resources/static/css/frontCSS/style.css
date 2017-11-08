@@ -1,5 +1,6 @@
 @charset "utf-8";
 /* CSS Document 主页面*/
+img { max-width: 100%;}
 #Top{
 	width: 1366px;
 	height: 64px;
@@ -314,10 +315,6 @@
 }
 
 /*注册*/
-#reg_body{
-	margin: -8px;
-	position: fixed;
-}
 #reg_top{
 	width: 1366px;
 	height: 64px;
@@ -343,28 +340,27 @@
 }
 #reg_center{
 	width: 1366px;
-	height: 600px;
+	height: 800px;
 	text-align: center;
-	background-image:url(/image/background.jpg);
-	background-repeat: no-repeat;
-	background-size: cover;
-	opacity: 0.5; 
+	/*background-image:url(/image/background.jpg);*/
+	/*background-repeat: no-repeat;*/
+	/*background-size: cover;*/
+	/*opacity: 0.5;*/
+	background-color:lightblue;
 }
 #reg_form{
-	width: 550px;
-	height: 320px;
-	padding: 100px 0px 0px 400px;
+	width: 40%;
+	height: 100%;
+	margin-left: 30%;
+
 }
 .reg_title{
 	font-size: 28px;
 	color: #fff;
 	font-weight: bolder;
-	margin: 0px 0px 20px 0px;
+
 }
-.reg_title,.line{
-	float: left;
-	
-}
+
 .reg_username input{
 	width: 556px;
 	height: 50px;
@@ -373,6 +369,14 @@
 	font-size: 18px;
 	background-color: transparent;
 	box-shadow:1px 1px 0 0 gray; 
+}
+.reg_sex{
+	text-align: left;
+	margin-left: 5px;
+}
+.reg_sex input{
+	width: 40px;
+
 }
 .reg_passwd input{
 	width: 556px;
@@ -392,6 +396,33 @@
 	background-color: transparent;
 	box-shadow:1px 1px 0 0 #fff; 
 }
+.reg_mobile input{
+	width: 556px;
+	height: 50px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	font-size: 18px;
+	background-color: transparent;
+	box-shadow:1px 1px 0 0 #fff;
+}
+.reg_age input{
+	width: 556px;
+	height: 50px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	font-size: 18px;
+	background-color: transparent;
+	box-shadow:1px 1px 0 0 #fff;
+}
+.reg_addr input{
+	width: 556px;
+	height: 50px;
+	border: 2px solid #fff;
+	border-radius: 3px;
+	font-size: 18px;
+	background-color: transparent;
+	box-shadow:1px 1px 0 0 #fff;
+}
 .reg_button input{
 	width: 560px;
 	height: 50px;
@@ -399,9 +430,9 @@
 	color: #fff;
 	background-color: #ff9800;
 	border: none;
-	box-shadow:2px 2px 0 0 gray;
+	box-shadow:2px 2px 1px 1px darkgray;
 }
-.reg_username,.reg_passwd,.reg_repasswd,.reg_button{
+.reg_username,.reg_passwd,.reg_repasswd,.reg_button,.reg_age,.reg_addr,.reg_sex,.reg_mobile{
 	padding: 10px;
 }
 #have_number{

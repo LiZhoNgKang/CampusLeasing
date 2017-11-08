@@ -63,9 +63,14 @@ public class ProductController {
 
     @RequestMapping("/searchProduct")
     public String getProductListByProductName( String productName, Model model){
-        List<Product> searchProductList=productService.getProductListByProductName(productName);
-        model.addAttribute("searchProductList",searchProductList);
-        return "redirect:productByCateId?cateId="+  searchProductList.get(10).getCateId();
+        System.out.println(productName);
+        if (productName!=""){
+            List<Product> searchProductList=productService.getProductListByProductName(productName);
+            model.addAttribute("searchProductList",searchProductList);
+            return "redirect:productByCateId?cateId="+  searchProductList.get(0).getCateId();}
+        else {
+            return "redirect:productByCateId?cateId=1";
+        }
     }
 
     @RequestMapping("productByCateId")
