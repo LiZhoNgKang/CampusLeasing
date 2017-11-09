@@ -22,7 +22,7 @@ public interface AdminMapper
 
 
 
-    @Select("<script>SELECT o.order_code,u.user_name,u.user_id,os.ostatus_name,os.ostatus_id,o.order_date \n" +
+    @Select("<script>SELECT o.order_id,o.order_code,u.user_name,u.user_id,os.ostatus_name,os.ostatus_id,o.order_date \n" +
             "from `order` o ,`user` u, orderstatus os WHERE \n" +
             "o.user_id = u.user_id AND o.ostatus_id = os.ostatus_id \n" +
             "AND o.order_code LIKE #{orderCode} \n" +
@@ -165,4 +165,20 @@ public interface AdminMapper
     })
     Product findProductByProduct(String productId);
 
+    @Update("update product set product_name=#{productName},cate_id=#{cateId}," +
+            "product_price=#{productPrice},product_disc=#{productDisc},product_date=#{productDate}" +
+            " where product_id=#{productId}")
+    boolean updateProduct(Product product);
+
+    @Update("update pic set pic_url=#{img} where product_id=#{productId}")
+    boolean updatePicByProductId(@Param("productId") Integer productId,@Param("img") String img);
+
+    @Delete("DELETE FROM product WHERE product_id =#{productId}")
+    boolean delProductByProductId(String productId);
+
+    @Delete("delete from OrderDetail where order_id=#{orderId}")
+    boolean delOrderDetailsByOrderId(String orderId);
+
+    @Delete("delete from order where order_id=#{orderId}")
+    boolean delOrderByOrderId(String orderId);
 }

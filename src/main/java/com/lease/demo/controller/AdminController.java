@@ -56,6 +56,51 @@ public class AdminController
         return "admin/edit_product";
     }
 
+    @RequestMapping("/updateProduct")
+    public String updateProduct(Product product,MultipartFile productPic,Model model)
+    {
+        String msg;
+        String href;
+        boolean updateRel = adminService.updateProduct(product);
+        String img = uploadUtil.uploadImage(productPic);
+        Integer productId = product.getProductId();
+        boolean picRel= adminService.updatePicByProductId(productId,img);
+        if (updateRel && picRel)
+        {
+            msg = "修改商品成功";
+            href = "productSearch";
+        }
+        else
+        {
+            msg = "修改商品失败";
+            href = "editProduct?productId=" + product.getProductId();
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
+    }
+
+    @RequestMapping("/delProduct")
+    public String delProduct(String productId,Model model)
+    {
+        String msg;
+        String href;
+        boolean delRel = adminService.delProductByProductId(productId);
+        if (delRel)
+        {
+            msg = "删除商品成功";
+            href = "productSearch";
+        }
+        else
+        {
+            msg = "删除商品失败";
+            href = "productSearch";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
+    }
+
 
     @RequestMapping("/category")
     public String category(Model model)
@@ -84,8 +129,28 @@ public class AdminController
         List<Order> orderList = adminService.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
         model.addAttribute("orderList",orderList);
         model.addAttribute("orderStatuses", orderStatuses);
-        System.out.println(orderList);
         return "admin/order_admin";
+    }
+
+    @RequestMapping("/delOrder")
+    public String delOrder(String orderId,Model model)
+    {
+        String msg;
+        String href;
+        boolean delRes = adminService.delOrderByOrderId(orderId);
+        if (delRes)
+        {
+            msg = "删除订单成功";
+            href = "orderSearch";
+        }
+        else
+        {
+            msg = "删除订单失败";
+            href = "orderSearch";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
     }
 
     @RequestMapping("/toAddUser")

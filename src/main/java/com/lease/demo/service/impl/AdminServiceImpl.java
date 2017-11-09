@@ -22,14 +22,12 @@ public class AdminServiceImpl implements AdminService
         if (userName == null)
         {
             userName = "%%";
-        }
-        else
+        } else
         {
             userName = "%" + userName + "%";
         }
         return adminMapper.searchUser(userName);
     }
-
 
 
     @Override
@@ -39,13 +37,12 @@ public class AdminServiceImpl implements AdminService
     }
 
     @Override
-    public List<Order> searchOrder(String  oStatusId, String orderCode, String userName, String startDate, String endDate)
+    public List<Order> searchOrder(String oStatusId, String orderCode, String userName, String startDate, String endDate)
     {
         if (orderCode == null)
         {
             orderCode = "%%";
-        }
-        else
+        } else
         {
             orderCode = "%" + orderCode + "%";
         }
@@ -53,13 +50,12 @@ public class AdminServiceImpl implements AdminService
         if (userName == null)
         {
             userName = "%%";
-        }
-        else
+        } else
         {
             userName = "%" + userName + "%";
         }
-        System.out.println(adminMapper.searchOrder(oStatusId,orderCode,userName,startDate,endDate).toString());
-        return adminMapper.searchOrder(oStatusId,orderCode,userName,startDate,endDate);
+        System.out.println(adminMapper.searchOrder(oStatusId, orderCode, userName, startDate, endDate).toString());
+        return adminMapper.searchOrder(oStatusId, orderCode, userName, startDate, endDate);
     }
 
     @Override
@@ -77,7 +73,7 @@ public class AdminServiceImpl implements AdminService
     @Override
     public boolean addCate(String cateName, String pic)
     {
-        return adminMapper.addCate(cateName,pic);
+        return adminMapper.addCate(cateName, pic);
     }
 
     @Override
@@ -95,7 +91,7 @@ public class AdminServiceImpl implements AdminService
     @Override
     public boolean addProductPic(String maxProductId, String image)
     {
-        return adminMapper.addProductPic(maxProductId,image);
+        return adminMapper.addProductPic(maxProductId, image);
     }
 
     @Override
@@ -119,7 +115,7 @@ public class AdminServiceImpl implements AdminService
     @Override
     public boolean updateCate(String cateId, String cateName, String img)
     {
-        return adminMapper.updateCate(cateId,cateName,img);
+        return adminMapper.updateCate(cateId, cateName, img);
     }
 
     @Override
@@ -131,14 +127,13 @@ public class AdminServiceImpl implements AdminService
         if (productId.size() > 0)
         {
 //            批量删除...
-            for (String o:productId)
+            for (String o : productId)
             {
                 adminMapper.delPicByProductId(o);
             }
             adminMapper.delProductByCateId(cateId);
             adminMapper.delCateByCateId(cateId);
-        }
-        else
+        } else
         {
             adminMapper.delProductByCateId(cateId);
             adminMapper.delCateByCateId(cateId);
@@ -161,23 +156,54 @@ public class AdminServiceImpl implements AdminService
     }
 
     @Override
-    public List<Product> searchProduct(String cateId,String productName)
+    public List<Product> searchProduct(String cateId, String productName)
     {
         if (productName == null)
         {
             productName = "%%";
-        }
-        else
+        } else
         {
             productName = "%" + productName + "%";
         }
-        return adminMapper.searchProduct(cateId,productName);
+        return adminMapper.searchProduct(cateId, productName);
     }
 
     @Override
     public Product findProductByProduct(String productId)
     {
         return adminMapper.findProductByProduct(productId);
+    }
+
+    @Override
+    public boolean updateProduct(Product product)
+    {
+        return adminMapper.updateProduct(product);
+    }
+
+    @Override
+    public boolean updatePicByProductId(Integer productId, String img)
+    {
+        return adminMapper.updatePicByProductId(productId, img);
+    }
+
+    @Override
+    public boolean delProductByProductId(String productId)
+    {
+        return adminMapper.delProductByProductId(productId);
+    }
+
+    @Override
+    public boolean delOrderByOrderId(String orderId)
+    {
+        boolean res = adminMapper.delOrderDetailsByOrderId(orderId);
+        boolean res1 = adminMapper.delOrderByOrderId(orderId);
+        if ( res && res1)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
     }
 
 

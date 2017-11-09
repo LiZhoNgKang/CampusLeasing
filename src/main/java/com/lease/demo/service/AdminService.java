@@ -43,4 +43,12 @@ public interface AdminService
     List<Product> searchProduct(String cateId, String productName);
 
     Product findProductByProduct(String productId);
+
+    boolean updateProduct(Product product);
+
+    boolean updatePicByProductId(Integer productId, String img);
+
+    boolean delProductByProductId(String productId);
+
+    boolean delOrderByOrderId(String orderId);
 }
