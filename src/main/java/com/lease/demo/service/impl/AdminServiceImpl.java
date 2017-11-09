@@ -195,15 +195,16 @@ public class AdminServiceImpl implements AdminService
     @Override
     public boolean delOrderByOrderId(String orderId)
     {
-        boolean res = adminMapper.delOrderDetailsByOrderId(orderId);
-        boolean res1 = adminMapper.delOrderByOrderId(orderId);
-        if ( res && res1)
+        adminMapper.delOrderDetailsByOrderId(orderId);
+        boolean res = adminMapper.delOrderByOrderId(orderId);
+        if (res)
         {
             return true;
         } else
         {
             return false;
         }
+
     }
 
 

@@ -176,9 +176,9 @@ public interface AdminMapper
     @Delete("DELETE FROM product WHERE product_id =#{productId}")
     boolean delProductByProductId(String productId);
 
-    @Delete("delete from OrderDetail where order_id=#{orderId}")
-    boolean delOrderDetailsByOrderId(String orderId);
+    @Delete("DELETE FROM orderdetail WHERE order_id =#{orderId}")
+    void delOrderDetailsByOrderId(String orderId);
 
-    @Delete("delete from order where order_id=#{orderId}")
+    @Delete("delete from `order` where order_id=#{orderId}")
     boolean delOrderByOrderId(String orderId);
 }
