@@ -27,36 +27,38 @@
 				<img th:src="${productDetailList.pics.picUrl}">
 			</div>
 			<div id="project_details">
-				<table>
-					<tr>
-						<td class="product_message">商品名称：</td>
-						<td class="product_name" th:text="${productDetailList.productName}"></td>
-					</tr>
-					<tr>
-						<td class="product_message">商品描述：</td>
-						<td class="product_info" th:text="${productDetailList.productDisc}"></td>
-					</tr>
-					<tr>
-						<td class="product_message">商品租金：</td>
-						<td class="product_rent_price" th:text="${productDetailList.productPrice+'/天'}">￥10/天</td>
-					</tr>
-					<tr>
-						<td class="product_message">商品租用期限：</td>
-						<td><div class="lease_limit_position">
-							<input type="button" class="lease_limit" value="1天">
-							<input type="button" class="lease_limit" value="3天">
-							<input type="button" class="lease_limit" value="10天">
-							<input type="button" class="lease_limit" value="15天">
-							<input type="button" class="lease_limit" value="30天">
-							<span>其他：<input type="number" placeholder="输入天数"></span> 
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2" class="product_btn"><input type="submit" value="租用" class="rent_btn" onclick="window.location.href='myOrder'">
-						<input type="submit" value="加入购物车" class="add_car_btn" onclick="window.location.href='shoppingCart'"></td>
-					</tr>
-				</table>
+				<form>
+					<table>
+						<tr>
+							<td class="product_message">商品名称：</td>
+							<td class="product_name" th:name="productName" th:text="${productDetailList.productName}"></td>
+						</tr>
+						<tr>
+							<td class="product_message">商品描述：</td>
+							<td class="product_info" th:name="productDisc" th:text="${productDetailList.productDisc}"></td>
+						</tr>
+						<tr>
+							<td class="product_message">商品租金：</td>
+							<td class="product_rent_price" th:name="productPrice" th:text="${productDetailList.productPrice+'/天'}">￥10/天</td>
+						</tr>
+						<tr>
+							<td class="product_message">商品租用期限：</td>
+							<td><div class="lease_limit_position">
+								<input type="button" class="lease_limit" value="1天">
+								<input type="button" class="lease_limit" value="3天">
+								<input type="button" class="lease_limit" value="10天">
+								<input type="button" class="lease_limit" value="15天">
+								<input type="button" class="lease_limit" value="30天">
+								<span>其他：<input type="number" placeholder="输入天数"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" class="product_btn"><input type="submit" value="租用" class="rent_btn" onclick="window.location.href='myOrder'">
+							<input type="submit" value="加入购物车" class="add_car_btn" onclick="window.location.href='shoppingCart'"></td>
+						</tr>
+					</table>
+				</form>
 			</div>
 		</div>
 </div>

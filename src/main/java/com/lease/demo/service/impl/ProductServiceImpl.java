@@ -50,5 +50,11 @@ public class ProductServiceImpl implements ProductService {
         return productMapper.addPic(productId,image);
     }
 
+    @Override
+    public List<Product> getProductListByProductName(String productName) {
+            String searchResult = "%" + productName + "%";
+            return productMapper.getProductListByProductName(searchResult);
+    }
+
 
 }

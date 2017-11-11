@@ -2,14 +2,30 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>首页</title>
 </head>
 
 <link rel="stylesheet" th:href="@{https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css}" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <link rel="stylesheet" th:href="@{/css/frontCSS/bootstrap.css}">
 <link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
-
+<script type="text/javascript">
+    var phoneWidth = parseInt(window.screen.width);
+    var phoneScale = phoneWidth/640;
+    var ua = navigator.userAgent;
+    if (/Android (\d+\.\d+)/.test(ua)){
+        var version = parseFloat(RegExp.$1);
+        if(version>2.3){
+            document.write('<meta name="viewport" content="width=640, minimum-scale = ‘+phoneScale+‘, maximum-scale = ‘+phoneScale+‘, target-densitydpi=device-dpi">');
+        }else{
+            document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+        }
+    } else {
+        document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+    }
+</script>
+　
 <body>
 <div id="Body">
 	<div id="Top">
@@ -21,10 +37,12 @@
 		<div id="nav">
 			<div><span class="projectInfo">一个出租闲置与租赁己需的平台</span></div>
 			<div><span class="projectInfo1">由学生提供商品，商品分类繁多，真正的达到有求必应</span></div>
+			<form  th:action="@{searchProduct}">
 			<div id="search">
-				<input type="search" class="search" placeholder="请输入您要查找的商品名称">
-				<input type="button" class="btn btn-success" value="搜索">
+				<input type="text" class="search" placeholder="请输入您要查找的商品名称" name="productName">
+				<input type="submit" class="btn btn-success" value="搜索">
 			</div>
+			</form>
 			<div id="addNewGoods">
 				<a th:href="@{publishProduct}">发布你的商品</a>
 			</div>

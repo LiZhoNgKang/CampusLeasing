@@ -5,6 +5,7 @@
 <title>注册页面</title>
 </head>
 <link rel="stylesheet" th:href="@{/css/frontCSS	/style.css}">
+<link rel="stylesheet" th:href="@{/css/frontCSS/bootstrap.min.css}">
 <body>
 <div id="reg_body">
 		<div id="reg_top">
@@ -14,28 +15,42 @@
 		</div>
 		
 		<div id="reg_center">
-			<div id="reg_form">
+			<form id="reg_form" th:action="@{addNewUser}" method="post" name="formUser">
 				<div class="reg_form_title">
-					<div class="line"></div>
 					<div class="reg_title">注册</div>
-					<div class="line"></div>
 				</div>
 				<div class="reg_username">
-					<input type="text" placeholder="用户名">
+					<input type="text" name="userName" id="userName" placeholder="用户名">
 				</div>
 				<div class="reg_passwd">
-					<input type="password" placeholder="密码">
+					<input type="password" name="passWord" id="passWord" placeholder="密码">
 				</div>
 				<div class="reg_repasswd">
-					<input type="password" placeholder="再输一次密码">
+					<input type="password" name="rePassword" id="rePassword" placeholder="再输一次密码">
+				</div>
+				<div class="reg_sex">
+					<label>性别：</label>
+					<div class="radio-inline">
+						<input type="radio" id="sex1" name="userSex" value="0" style="width: 20px; height: 20px;" checked> 男
+						<input type="radio" id="sex2" name="userSex" value="1" style="width: 20px;height: 20px;"> 女
+					</div>
+				</div>
+				<div class="reg_age">
+					<input type="text" placeholder="年龄" id="userAge" name="userAge">
+				</div>
+				<div class="reg_addr">
+					<input type="text" placeholder="住址" id="address" name="address">
+				</div>
+				<div class="reg_mobile">
+					<input type="text" placeholder="手机号码" id="mobile" name="mobile">
 				</div>
 				<div class="reg_button">
-					<input type="button" value="注册">
+					<input type="submit" value="注册">
 				</div>
 				<div id="have_number">
 					<span>已有账户？</span><a th:href="@{login}">登录</a>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </body>
