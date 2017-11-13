@@ -8,6 +8,6 @@ import org.apache.ibatis.annotations.Insert;
  */
 public interface UserMapper {
 
-    @Insert("INSERT INTO user(user_name,password,user_age,user_sex,address,mobile) VALUES(#{userName},#{passWord},#{userAge},#{userSex},#{address},#{mobile})")
+    @Insert("INSERT INTO user(user_name,password,user_age,user_sex,address,mobile,rank) VALUES(#{userName},#{passWord},#{userAge},#{userSex},#{address},#{mobile},0)")
     Boolean addNewUser(User user);
 }

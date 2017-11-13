@@ -25,7 +25,8 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("/campusleasing")
-public class ProductController {
+public class ProductController
+{
     @Autowired
     ProductService productService;
     @Autowired
@@ -35,26 +36,29 @@ public class ProductController {
     UploadUtil uploadUtil;
 
     @RequestMapping("/publishProduct")
-    public String addNewProduct( Model model) {
+    public String addNewProduct(Model model)
+    {
         List<Category> categoryList = cateService.findAllCate();
         model.addAttribute("categoryList", categoryList);
         return "/add_new_products";
     }
 
     @RequestMapping("/addProduct")
-    public String addProduct(Product product, @RequestParam(required = false) MultipartFile productPic) {
-       String image = uploadUtil.uploadImage(productPic);
+    public String addProduct(Product product, @RequestParam(required = false) MultipartFile productPic)
+    {
+        String image = uploadUtil.uploadImage(productPic);
 
-       Boolean result=productService.addNewProduct(product);
+        Boolean result = productService.addNewProduct(product);
 
-       String productId = productService.getMaxProductId();
+        String productId = productService.getMaxProductId();
         System.out.println(productId);
-      boolean picRel = productService.addPic(productId,image);
+        boolean picRel = productService.addPic(productId, image);
         return "personal_center";
     }
 
     @RequestMapping("/getProductDetailsByProductId")
-    public String productDetails(@RequestParam(required = true) String productId, Model model) {
+    public String productDetails(@RequestParam(required = true) String productId, Model model)
+    {
 
         List<Product> productDetailList = productService.getProductDetailsByProductId(productId);
         model.addAttribute("productDetailList", productDetailList);
@@ -62,19 +66,23 @@ public class ProductController {
     }
 
     @RequestMapping("/searchProduct")
-    public String getProductListByProductName( String productName, Model model){
+    public String getProductListByProductName(String productName, Model model)
+    {
         System.out.println(productName);
-        if (productName!=""){
-            List<Product> searchProductList=productService.getProductListByProductName(productName);
-            model.addAttribute("searchProductList",searchProductList);
-            return "redirect:productByCateId?cateId="+  searchProductList.get(0).getCateId();}
-        else {
+        if (productName != "")
+        {
+            List<Product> searchProductList = productService.getProductListByProductName(productName);
+            model.addAttribute("searchProductList", searchProductList);
+            return "redirect:productByCateId?cateId=" + searchProductList.get(0).getCateId();
+        } else
+        {
             return "redirect:productByCateId?cateId=1";
         }
     }
 
     @RequestMapping("productByCateId")
-    public String productByCateId(@RequestParam(required = true) String cateId, Model model) {
+    public String productByCateId(@RequestParam(required = true) String cateId, Model model)
+    {
         System.out.println(cateId);
         List<Product> productList = productService.getProductByCateId(cateId);
         model.addAttribute("productList", productList);
