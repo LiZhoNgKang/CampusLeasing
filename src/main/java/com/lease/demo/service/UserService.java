@@ -11,5 +11,5 @@ public interface UserService {
 
     User getUserByUserNameAndPassword(User user);
 
-    String getUserAddrByUserId(String userId);
+    String getUserAddrByUserId(Object userId);
 }

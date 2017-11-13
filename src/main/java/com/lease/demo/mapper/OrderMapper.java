@@ -13,16 +13,28 @@ import java.util.List;
  */
 public interface OrderMapper {
 
-    @Insert("insert into order(user_id,order_code,order_date,order_addr,ostatus_id) values(#{userId},#{orderCode},now(),#{userAddr},2)")
-    boolean addProductToShopCart(@Param("userId") String userId, @Param("userAddr") String userAddr, @Param("orderCode") String orderCode);
+    @Insert("insert into `order`(user_id,order_code,order_date,order_addr,ostatus_id) values(#{userId},#{orderCode},now(),#{userAddr},2)")
+    boolean addProductToShopCart(@Param("userId") Object userId,
+                                 @Param("userAddr") String userAddr, @Param("orderCode") String orderCode);
 
-    @Select("select max(order_id) from order")
+    @Select("select max(order_id) from `order`")
     String findMaxOrderId();
 
     @Insert("insert into orderdetail(order_id,product_id,odetail_price,odetail_name,odetail_pic,odetail_num,odetail_day) " +
             "values(#{orderId},#{productId},#{price},#{productName},#{productPic},#{odetailNum},#{odetailDay})")
     boolean addShopCart(@Param("orderId") String orderId, @Param("productId") String productId,
-                        @Param("price") float price, @Param("productName") String productName,
-                        @Param("productPic") String productPic,@Param("odetailNum") int odetailNum,
-                        @Param("odetailDay") int odetailDay);
+                        @Param("price") Float price, @Param("productName") String productName,
+                        @Param("productPic") String productPic, @Param("odetailNum") String odetailNum,
+                        @Param("odetailDay") String odetailDay);
+
+    @Insert("insert into `order`(user_id,order_code,order_date,order_addr,ostatus_id) values(#{userId},#{orderCode},now(),#{userAddr},3)")
+    boolean addRent(@Param("userId") Object userId,
+                    @Param("userAddr") String userAddr, @Param("orderCode") String orderCode);
+
+    @Insert("insert into orderdetail(order_id,product_id,odetail_price,odetail_name,odetail_pic,odetail_num,odetail_day) " +
+            "values(#{orderId},#{productId},#{price},#{productName},#{productPic},#{odetailNum},#{odetailDay})")
+    boolean addRentToOrderDetail(@Param("orderId") String orderId, @Param("productId") String productId,
+                                 @Param("price") Float price, @Param("productName") String productName,
+                                 @Param("productPic") String productPic, @Param("odetailNum") String odetailNum,
+                                 @Param("odetailDay") String odetailDay);
 }

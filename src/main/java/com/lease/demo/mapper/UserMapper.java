@@ -16,5 +16,5 @@ public interface UserMapper {
     User getUserByUserNameAndPassword(User user);
 
     @Select("select address from user where user_id=#{uderId}")
-    String getUserAddrByUserId(String userId);
+    String getUserAddrByUserId(Object userId);
 }

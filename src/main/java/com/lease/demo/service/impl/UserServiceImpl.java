@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String getUserAddrByUserId(String userId) {
+    public String getUserAddrByUserId(Object userId) {
         return userMapper.getUserAddrByUserId(userId);
     }
 }

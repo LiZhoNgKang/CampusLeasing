@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,16 +41,17 @@ public class ShoppingCartController {
     }
 
     @RequestMapping("/addToCart")
-    public String addToCart(Model model, String productId,String productPic,int odetailNum,String productName,String productPrice,int odetailDay)
+    public String addToCart(@RequestParam String productId, @RequestParam String productPic,
+                            @RequestParam String odetailNum, @RequestParam String productName,
+                            @RequestParam String productPrice, @RequestParam String odetailDay,Model model)
     {
         HttpSession session = request.getSession();
         String msg;
         String href;
-        System.out.println(productPrice);
 
         if (session.getAttribute("userName") != null)
         {
-            String userId= (String) session.getAttribute("userId");
+            Object userId= (Object) session.getAttribute("userId");
             String userAddr=userService.getUserAddrByUserId(userId);
 
             Date d=new Date();
@@ -69,7 +71,8 @@ public class ShoppingCartController {
             if (res)
             {
                 String orderId = orderService.findMaxOrderId();
-                float price = odetailNum*odetailDay*Float.parseFloat(productPrice);
+                Float price = Float.parseFloat(productPrice)*
+                        Integer.parseInt(odetailNum)*Integer.parseInt(odetailDay);
                 boolean res1 = orderService.addShopCart(orderId,productId,price,productName,productPic,odetailNum,odetailDay);
                 if (res1)
                 {
@@ -85,6 +88,67 @@ public class ShoppingCartController {
             else
             {
                 msg = "添加购物车失败";
+                href = "productDetails?productId=" + productId;
+            }
+
+        } else
+        {
+            msg = "未登录,请登录！！";
+            href = "login";
+        }
+        model.addAttribute("msg", msg);
+        model.addAttribute("href", href);
+        return "result";
+    }
+
+    @RequestMapping("/rent")
+    public String rent(@RequestParam String productId, @RequestParam String productPic,
+                       @RequestParam String odetailNum, @RequestParam String productName,
+                       @RequestParam String productPrice, @RequestParam String odetailDay,Model model)
+    {
+        HttpSession session = request.getSession();
+        String msg;
+        String href;
+
+        if (session.getAttribute("userName") != null)
+        {
+            Object userId= (Object) session.getAttribute("userId");
+            String userAddr=userService.getUserAddrByUserId(userId);
+
+            Date d=new Date();
+            SimpleDateFormat sf=new SimpleDateFormat("yyyyMMdd");
+            String str=sf.format(d);
+            Random r=new Random();
+            int i=r.nextInt(100);
+            String s="";
+            if(i<10)
+                s="00"+i;
+            else if(i>=10&&i<=99)
+                s="0"+i;
+            String orderCode=str+s;
+
+            boolean res = orderService.addRent(userId,userAddr,orderCode);
+
+            if (res)
+            {
+                String orderId = orderService.findMaxOrderId();
+                Float price = Float.parseFloat(productPrice)*
+                        Integer.parseInt(odetailNum)*Integer.parseInt(odetailDay);
+                boolean res1 = orderService.addRentToOrderDetail(orderId,productId,price,productName,productPic,odetailNum,odetailDay);
+                if (res1)
+                {
+                    msg = "租用成功";
+                    href = "myOrder?userId="+userId;
+                }
+                else
+                {
+                    msg = "租用失败";
+                    href = "productDetails?productId=" + productId;
+                }
+            }
+            else
+            {
+                msg = "租用失败";
                 href = "productDetails?productId=" + productId;
             }
 

@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService{
 
 
     @Override
-    public boolean addProductToShopCart(String userId, String userAddr, String orderCode) {
+    public boolean addProductToShopCart(Object userId, String userAddr, String orderCode) {
         return orderMapper.addProductToShopCart(userId,userAddr,orderCode);
     }
 
@@ -24,11 +24,24 @@ public class OrderServiceImpl implements OrderService{
         return orderMapper.findMaxOrderId();
     }
 
+    @Override
+    public boolean addShopCart(String orderId, String productId, Float price, String productName, String productPic, String odetailNum, String odetailDay)
+    {
+        return orderMapper.addShopCart(orderId,productId,price,productName,
+                productPic,odetailNum,odetailDay);
+    }
 
     @Override
-    public boolean addShopCart(String orderId, String productId, float price, String productName, String productPic, int odetailNum, int odetailDay)
+    public boolean addRent(Object userId, String userAddr, String orderCode)
     {
-        return orderMapper.addShopCart(orderId,productId,price,productName,productPic,odetailNum,odetailDay);
+        return orderMapper.addRent(userId,userAddr,orderCode);
+    }
+
+    @Override
+    public boolean addRentToOrderDetail(String orderId, String productId, Float price, String productName, String productPic, String odetailNum, String odetailDay)
+    {
+        return orderMapper.addRentToOrderDetail(orderId,productId,price,productName,
+                productPic,odetailNum,odetailDay);
     }
 
 

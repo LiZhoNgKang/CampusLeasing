@@ -1,5 +1,7 @@
 package com.lease.demo.dao;
 
+import org.springframework.format.annotation.NumberFormat;
+
 import java.util.List;
 
 public class OrderDetail
@@ -7,6 +9,7 @@ public class OrderDetail
     private int odetailId;
     private int orderId;
     private int productId;
+    @NumberFormat(pattern="##.#")
     private float odetailPrice;
     private int odetailNum;
     private String odetailName;
