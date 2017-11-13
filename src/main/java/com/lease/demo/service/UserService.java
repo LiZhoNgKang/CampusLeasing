@@ -8,4 +8,8 @@ import com.lease.demo.dao.User;
 public interface UserService {
 
     Boolean addNewUser(User user);
+
+    User getUserByUserNameAndPassword(User user);
+
+    String getUserAddrByUserId(String userId);
 }

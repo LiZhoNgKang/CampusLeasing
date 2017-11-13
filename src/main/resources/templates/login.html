@@ -1,19 +1,25 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org
+
+">
 <head>
-<meta charset="utf-8">
-<title>登录页面</title>
+	<meta charset="utf-8">
+	<title>登录页面</title>
 </head>
 <link rel="stylesheet" th:href="@{/css/frontCSS/style.css}">
 <body>
-	<div id="login_body">
-		<div id="login_top">
-			<a th:href="@{home}"><span id="title">校园租赁</span></a>
-		   <div id="login"><a th:href="@{login}" class="login">登录</a></div>
-		   <div id="reg"><a th:href="@{register}" class="reg">注册</a></div>
+<div id="login_body">
+	<div id="login_top">
+		<a th:href="@{home}"><span id="title">校园租赁</span></a>
+		<div>
+			<div id="login"><a th:href="@{login}" class="login">登录</a></div>
+			<div id="reg"><a th:href="@{register}" class="reg">注册</a></div>
 		</div>
-		
-		<div id="login_center">
+
+	</div>
+
+	<div id="login_center">
+		<form name="formLogin" th:action="@{loginSession}" method="post">
 			<div id="login_form">
 				<div class="login_form_title">
 					<div class="line"></div>
@@ -21,19 +27,20 @@
 					<div class="line"></div>
 				</div>
 				<div class="login_username">
-					<input type="text" placeholder="用户名">
+					<input type="text" placeholder="用户名" name="userName">
 				</div>
 				<div class="login_passwd">
-					<input type="password" placeholder="密码">
+					<input type="password" placeholder="密码" name="password">
 				</div>
 				<div class="rember_passwd">
 					<input type="checkbox" class="radio">记住密码
 				</div>
 				<div class="login_button">
-					<input type="button" value="登录">
+					<input type="submit" value="登录">
 				</div>
 			</div>
-		</div>
+		</form>
 	</div>
+</div>
 </body>
 </html>

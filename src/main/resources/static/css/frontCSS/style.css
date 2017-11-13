@@ -20,6 +20,28 @@ img { max-width: 100%;}
 	font-weight: bold;
 	text-decoration: none;
 }
+
+#home_menu{
+	font-size: 14px;
+	text-align: center;
+	padding: 30px 0px 0px 980px;
+}
+#home_menu ul li{
+	float: left;
+	color: #fff;
+	font-weight: bold;
+	list-style: none;
+}
+#home_menu a{
+	color: #fff;
+	text-decoration: none;
+}
+#home_menu a:hover{
+	color: #ff9800;
+}
+#home_menu .user{
+	color: #ff9800;
+}
 #Top a:hover{
 	color: #ff9800;
 }
@@ -126,7 +148,7 @@ img { max-width: 100%;}
 #shopping_sort_value .card{
 	margin: 0 2.4%;
 	text-align: center;
-	border: 1px dashed black;
+
 }
 #shopping_sort_value .card-img-top{
 	width: 10rem;

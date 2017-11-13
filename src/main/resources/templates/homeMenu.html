@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div id="Top" th:fragment="homeMenu">
+    <a th:href="@{home}"><span id="title">校园租赁</span></a>
+    <div th:if="${session.userName==null}">
+        <div id="login"><a th:href="@{login}" class="login">登录</a></div>
+        <div id="reg"><a th:href="@{register}" class="reg">注册</a></div>
+    </div>
+    <div id="home_menu" th:if="${session.userName!=null}">
+        <ul>
+            <li><a th:text="${session.userName}+',欢迎您！'" class="user"></a></li>
+            <li class="fengefu">/</li>
+            <li><a th:href="@{shoppingCart}">购物车</a></li>
+            <li class="fengefu">/</li>
+            <li><a th:href="@{myOrder}">我的订单</a></li>
+            <li class="fengefu">/</li>
+            <li><a th:href="@{personalCenter}">个人中心</a></li>
+            <li class="fengefu">/</li>
+            <li><a th:href="@{removeUser}">退出登录</a></li>
+        </ul>
+    </div>
+</div>
+</html>

@@ -27,7 +27,12 @@
 				<img th:src="${productDetailList.pics.picUrl}">
 			</div>
 			<div id="project_details">
-				<form>
+				<form th:action="@{rent}" method="post" id="from1" name="from1">
+					<input type="hidden" name="productId" th:value="${productDetailList.productId}"/>
+					<input type="hidden" name="productName" th:value="${productDetailList.productName}"/>
+					<input type="hidden" name="productPrice" th:value="${productDetailList.productPrice}"/>
+					<input type="hidden" name="productPic" th:value="${productDetailList.pics.picUrl}"/>
+
 					<table>
 						<tr>
 							<td class="product_message">商品名称：</td>
@@ -42,20 +47,25 @@
 							<td class="product_rent_price" th:name="productPrice" th:text="${productDetailList.productPrice+'/天'}">￥10/天</td>
 						</tr>
 						<tr>
-							<td class="product_message">商品租用期限：</td>
-							<td><div class="lease_limit_position">
-								<input type="button" class="lease_limit" value="1天">
-								<input type="button" class="lease_limit" value="3天">
-								<input type="button" class="lease_limit" value="10天">
-								<input type="button" class="lease_limit" value="15天">
-								<input type="button" class="lease_limit" value="30天">
-								<span>其他：<input type="number" placeholder="输入天数"></span>
+							<td class="product_message">商品数量：</td>
+							<td>
+								<div  class="radio-inline">
+									<span><input type="number" name="odetailNum" id="odetailNum" placeholder="输入数量" onkeyup="num()"></span>
 								</div>
 							</td>
 						</tr>
 						<tr>
-							<td colspan="2" class="product_btn"><input type="submit" value="租用" class="rent_btn" onclick="window.location.href='myOrder'">
-							<input type="submit" value="加入购物车" class="add_car_btn" onclick="window.location.href='shoppingCart'"></td>
+							<td class="product_message">商品租用期限：</td>
+							<td>
+								<div  class="radio-inline">
+									<span><input type="number" name="odetailDay" id="odetailDay" placeholder="输入天数" onkeyup="num()">天</span>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td colspan="2" class="product_btn"><input type="submit" value="租用" class="rent_btn" onclick="document.from1.action='rent';">
+							<input type="submit" value="加入购物车" class="add_car_btn" onclick="document.from1.action='addToCart';"></td>
 						</tr>
 					</table>
 				</form>

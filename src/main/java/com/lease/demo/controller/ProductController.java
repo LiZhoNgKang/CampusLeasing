@@ -56,8 +56,8 @@ public class ProductController
         return "personal_center";
     }
 
-    @RequestMapping("/getProductDetailsByProductId")
-    public String productDetails(@RequestParam(required = true) String productId, Model model)
+    @RequestMapping("/productDetails")
+    public String productDetails(@RequestParam String productId, Model model)
     {
 
         List<Product> productDetailList = productService.getProductDetailsByProductId(productId);

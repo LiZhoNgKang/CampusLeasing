@@ -37,7 +37,7 @@
 					  <div class="card-body">
 							<h4 class="card-title" th:text="${rightList.productName}"></h4>
 							<p class="card-text">租金：<span th:text="'￥'+${rightList.productPrice+'/天'}"></span></p>
-							<a th:href="'getProductDetailsByProductId?productId='+${rightList.productId}" class="btn btn-primary">查看详情</a>
+							<a th:href="'productDetails?productId='+${rightList.productId}" class="btn btn-primary">查看详情</a>
 				 	 </div>
 				</div>
 			</div>
